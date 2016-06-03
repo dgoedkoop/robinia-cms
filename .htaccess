@@ -1,0 +1,6 @@
+RewriteEngine On
+RewriteRule ^$ index.html
+RewriteRule ^([a-z0-9_\-]+).html$ index.php?c=page&a=pagelink&link=$1
+RewriteRule ^interrailimg/([a-z0-9_\.]+)$ uploads/images/$1 [R=301,L]
+RewriteRule ^uploads/images/([a-z0-9_\.]+)$ image.php?id=uploads/images/$1
+RewriteBase /<enter directory here>/
