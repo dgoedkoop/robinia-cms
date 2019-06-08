@@ -2,13 +2,13 @@
 
 require_once 'options.php';
 
-/* De database voor dit programma ziet er grofweg als volgt uit:
+/* The database for this application looks roughly as following:
  * ELEMENT -> id, parent_id, order_index(int), no_of_children, creation_time, active(enum), type
- *  mogelijke waardes voor active:
- *  y (actief)
- *  d (actief maar is tijdens het bewerken gemarkeerd om te worden verwijderd)
- *  n (niet actief)
- *  p (niet actief maar is tijdens het bewerken gecreëerd)
+ *  possible values for 'active':
+ *  y (active)
+ *  d (active, but marked for deletion)
+ *  n (not active)
+ *  p (not active, pending)
  * CONTAINER -> X
  * IMAGE_GALLERY -> X
  * IMAGE -> element_id, filename(str), alttext(str), caption(str), width(int), height(int)
@@ -161,7 +161,7 @@ class mod_Database
     {
         foreach ($this->options->GetOption('classlist') as $classbase) {
             $classname = 'mod_' . $classbase;
-            /* Stupid PHP bug: PHP at Antagonist acts stupidly when
+            /* PHP bug: PHP at some web hosting providers acts stupidly when
              * combining is_callable or call_user_func with __autoload. */
 /*          $callable = array($classname, 'GetName');
             if (is_callable($callable)) {
