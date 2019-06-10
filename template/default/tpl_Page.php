@@ -4,8 +4,10 @@ class tpl_Page extends mod_Page implements tpl_ElementInterface
 {
     public function GetOutput()
     {
+        $output = "";
         if ($this->GetFullyLoaded()) {
-            $output = "";
+            $cookiebox = new tpl_CookieBox($this->options);
+            $output .= $cookiebox->GetOutput();
             foreach ($this->children as $child_element) {
                 $output .= $child_element->GetOutput();
             }
@@ -27,7 +29,7 @@ class tpl_Page extends mod_Page implements tpl_ElementInterface
             } else {
                 $url = urlencode($linkname) . '.html';
             }
-            $output = '<p><a href="' . $url . '"><b>' . $title . '</b></a>';
+            $output .= '<p><a href="' . $url . '"><b>' . $title . '</b></a>';
             if ($description != '') {
                 $output .= ' - ' . $description;
             }

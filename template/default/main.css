@@ -308,6 +308,46 @@ p.imgcaption {
     margin-right: 7px;
 }
 
+span.imgnocookies {
+	display: inline-block;
+	color: #FFFFFF;
+	background-color: #404040;
+}
+span.imgnocookiestext {
+	display: inline-block;
+	margin: 25px 25px 25px 25px;
+	text-align: center;
+}
+
+span.cookiebox {
+	display: block;
+	background-color: #E5E5E5;
+	border-radius: 7px; 
+}
+span.cookieboxtext {
+	display: inline-block;
+	padding: 10px 10px 10px 10px;
+}
+span.cookieboxbuttonarea {
+	display: block;
+	text-align: center;
+	padding: 10px 10px 10px 10px; 
+}
+span.cookieboxbutton {
+	display: inline-block;
+	background-color: #632C1B;
+	color: #FFFFFF;
+	border-radius: 7px; 
+}
+span.cookieboxbuttontext {
+	display: inline-block;
+	text-align: center;
+	padding: 5px 5px 5px 5px;
+}
+span.cookieboxbutton a {
+	color: #FFFFFF;
+}
+
 .pp_description {
     font-weight: normal !important;
     font-size: 11pt !important;
