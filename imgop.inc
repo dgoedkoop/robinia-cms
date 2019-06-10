@@ -4,7 +4,7 @@ class ImgImg
 {
     private $data = false;
     public $format = "";
-	
+    
     public function DoInput($filename)
     {
         if (!file_exists($filename)) {
@@ -55,7 +55,7 @@ class ImgImg
             case IMAGETYPE_PNG:
                 imagepng($this->data, $filename);
                 break;
-            default: return false;             
+            default: return false;
         }
         return true;
     }

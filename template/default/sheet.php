@@ -13,7 +13,7 @@ class tpl_Sheet implements tpl_ElementInterface
     
     public function SetModelTree(mod_Element $mod_element)
     {
-    	$this->modeltree = $mod_element;
+        $this->modeltree = $mod_element;
     }
     
     public function SetMenuTree(mod_Element $mod_element)
@@ -23,11 +23,11 @@ class tpl_Sheet implements tpl_ElementInterface
     
     private function ContainerContainsHeading(mod_Element $container)
     {
-	    $found = false;
-	    foreach ($container->GetChildren() as $mod_child)
-	        if ($mod_child instanceof mod_Heading)
-		    $found = true;
-	    return $found;
+        $found = false;
+        foreach ($container->GetChildren() as $mod_child)
+            if ($mod_child instanceof mod_Heading)
+            $found = true;
+        return $found;
     }
     
     private function ConvertModelToTpl(mod_Element $mod_element, $headinglevel = 1)
@@ -47,17 +47,17 @@ class tpl_Sheet implements tpl_ElementInterface
         if ($i instanceof tpl_Heading) {
             $i->SetLevel($headinglevel);
         }
-    	if ($i) {
-	        $nieuweheadinglevel = $headinglevel;
-	        if ($this->ContainerContainsHeading($mod_element))
-		        $nieuweheadinglevel += 1;
-	        foreach ($mod_element->GetChildren() as $mod_child) {
-		        $tpl_child = $this->ConvertModelToTpl($mod_child, $nieuweheadinglevel);
-	        	if ($tpl_child)
-		            $i->AddChild($tpl_child);
-	        }
-	    }
-	    return $i;
+        if ($i) {
+            $nieuweheadinglevel = $headinglevel;
+            if ($this->ContainerContainsHeading($mod_element))
+                $nieuweheadinglevel += 1;
+            foreach ($mod_element->GetChildren() as $mod_child) {
+                $tpl_child = $this->ConvertModelToTpl($mod_child, $nieuweheadinglevel);
+                if ($tpl_child)
+                    $i->AddChild($tpl_child);
+            }
+        }
+        return $i;
     }
     
     private function ConvertMenuToTpl(mod_Element $mod_element)
@@ -65,17 +65,17 @@ class tpl_Sheet implements tpl_ElementInterface
         $i = new tpl_MenuItem();
         $i->SetID($mod_element->GetID());
         $valid = $i->SetFromModel($mod_element);
-    	if ($valid) {
+        if ($valid) {
             if ($mod_element->GetID() == $this->modeltree->GetID()) {
                 $i->SetLinkActive(false);
             }
-	        foreach ($mod_element->GetChildren() as $mod_child) {
-		        $tpl_child = $this->ConvertMenuToTpl($mod_child);
-		        if ($tpl_child)
-		            $i->AddChild($tpl_child);
-	        }
+            foreach ($mod_element->GetChildren() as $mod_child) {
+                $tpl_child = $this->ConvertMenuToTpl($mod_child);
+                if ($tpl_child)
+                    $i->AddChild($tpl_child);
+            }
             return $i;
-	    }
+        }
         return null;
     }
 
@@ -140,7 +140,7 @@ EOT;
                  . "<div class=paginarechts>"
                  . "<div class=paginakopkop>\n"
                  . "<h1>$title</h1>\n"
-                 . "</div><div class=paginazelf>\n";       
+                 . "</div><div class=paginazelf>\n";
         return $output;
     }
     
@@ -183,7 +183,7 @@ EOT;
     
     public function GetOutput()
     {
-	$tplroot = $this->ConvertModelToTpl($this->modeltree, 1);
+    $tplroot = $this->ConvertModelToTpl($this->modeltree, 1);
         if (!is_null($this->menutree)) {
             $menuroot = $this->ConvertMenuToTpl($this->menutree);
         } else {
@@ -191,7 +191,7 @@ EOT;
         }
         $title = $this->GetTitle($tplroot);
         $description = $this->GetDescription($tplroot);
-	    $output = $this->PageStart($title, $description);
+        $output = $this->PageStart($title, $description);
         if ($tplroot) {
             $output .= $tplroot->GetOutput();
         }

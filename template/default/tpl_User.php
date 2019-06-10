@@ -4,7 +4,7 @@ class tpl_User extends mod_User implements tpl_ElementInterface
 {
     public function GetOutput()
     {
-	return '';
+    return '';
     }
     public function SetFromModel(mod_Element $mod_element)
     {

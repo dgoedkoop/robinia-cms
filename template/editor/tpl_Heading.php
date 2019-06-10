@@ -6,11 +6,11 @@ class tpl_Heading extends mod_Heading implements tpl_ElementInterface
 
     public function GetLevel()
     {
-	return $this->level;
+    return $this->level;
     }
     public function SetLevel($level)
     {
-	$this->level = $level;
+    $this->level = $level;
     }
     
     public function GetContents()

@@ -77,27 +77,27 @@ abstract class mod_Element implements mod_iElement {
     }
     public function SetID($id)
     {
-	$this->element_id = $id;
+    $this->element_id = $id;
     }
     public function GetID()
     {
-	return $this->element_id;
+    return $this->element_id;
     }
     public function GetChildren()
     {
-	return $this->children;
+    return $this->children;
     }
     public function AddChild(mod_Element $child_element)
     {
-	$this->children[] = $child_element;
+    $this->children[] = $child_element;
     }
     public function AddChildren(array $children)
     {
-	$this->children = array_merge($this->children, $children);
+    $this->children = array_merge($this->children, $children);
     }
     public function SetChildren(array $children)
     {
-	$this->children = $children;
+    $this->children = $children;
     }
     public function FindPossibleChildClasses($options)
     {

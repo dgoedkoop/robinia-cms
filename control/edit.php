@@ -71,7 +71,7 @@ class ctrl_Edit
            . "<div class=paginakoprechts><div class=paginakopkop>\n"
            . "<h1>$title</h1>\n"
            . "</div></div>\n"
-           . "<div class=paginazelf>";        
+           . "<div class=paginazelf>";
     }
     private function PgEnd()
     {

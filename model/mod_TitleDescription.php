@@ -8,16 +8,16 @@ class mod_TitleDescription extends mod_Element {
     protected $linkname = "";
         
     public function GetTitle() {
-	    return $this->title;
+        return $this->title;
     }
     public function SetTitle($title) {
-	    $this->title = $title;
+        $this->title = $title;
     }
     public function GetDescription() {
-	    return $this->description;
+        return $this->description;
     }
     public function SetDescription($description) {
-	    $this->description = $description;
+        $this->description = $description;
     }
     public function GetLinkname()
     {

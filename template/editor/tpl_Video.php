@@ -49,8 +49,8 @@ class tpl_Video extends mod_Video implements tpl_ElementInterface
         if (!($mod_element instanceof mod_Video)) {
             return false;
         }
-	$this->SetURL($mod_element->GetURL());
-	$this->SetCaption($mod_element->GetCaption());
+    $this->SetURL($mod_element->GetURL());
+    $this->SetCaption($mod_element->GetCaption());
         return true;
     }
 }

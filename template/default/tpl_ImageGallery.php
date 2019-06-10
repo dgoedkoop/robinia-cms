@@ -12,7 +12,7 @@ class tpl_ImageGallery extends mod_ImageGallery implements tpl_ElementInterface
     public function GetOutput()
     {
         $buffer = $this->children;
-	    $output = '';
+        $output = '';
         while (count($buffer) > 0) {
             /*
              * Strategy A: maybe everything fits.
@@ -43,7 +43,7 @@ class tpl_ImageGallery extends mod_ImageGallery implements tpl_ElementInterface
                 foreach($buffer as $img) {
                     $output .= $box_start . $img->GetOutput() . $box_end;
                 }
-        	    $output .= "</div>\n";
+                $output .= "</div>\n";
                 $buffer = array();
             } else {
                 /*
@@ -86,10 +86,10 @@ class tpl_ImageGallery extends mod_ImageGallery implements tpl_ElementInterface
                     }
                     $output .= $box_start . $img->GetOutput() . $box_end;
                 }
-        	$output .= "</div>\n";
+            $output .= "</div>\n";
             }
         }
-	    return $output;
+        return $output;
     }
     public function SetFromModel(mod_Element $mod_element)
     {

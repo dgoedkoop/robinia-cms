@@ -16,7 +16,7 @@ class tpl_Video extends mod_Video implements tpl_ElementInterface
     {
         if (mod_ClientStorage::instance()->GetOption('GoogleCookies'))
         {
-	        $output = '<p class="imgself">';
+            $output = '<p class="imgself">';
             if ($this->displaywidth && $this->displayheight) {
                 $width = $this->displaywidth;
                 $height = $this->displayheight;
@@ -63,15 +63,15 @@ class tpl_Video extends mod_Video implements tpl_ElementInterface
             $output .= '</p><p class="imgcaption">' . $this->caption;
         }
         $output .= '</p>';
-	return $output;
+    return $output;
     }
     public function SetFromModel(mod_Element $mod_element)
     {
         if (!($mod_element instanceof mod_Video)) {
             return false;
         }
-	$this->SetURL($mod_element->GetURL());
-	$this->SetCaption($mod_element->GetCaption());
+    $this->SetURL($mod_element->GetURL());
+    $this->SetCaption($mod_element->GetCaption());
         return true;
     }
 }

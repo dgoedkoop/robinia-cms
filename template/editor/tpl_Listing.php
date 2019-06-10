@@ -8,7 +8,7 @@ class tpl_Listing extends mod_Listing implements tpl_ElementInterface
         foreach ($this->items as $item)
             $output .= "<li>".$item."\n";
         $output .= "</ul>\n\n";
-        return $output;	
+        return $output;
     }
     public function GetForm()
     {

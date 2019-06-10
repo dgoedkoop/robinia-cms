@@ -19,7 +19,7 @@ class tpl_Sheet implements tpl_ElementInterface
     
     public function SetModelTree($mod_element)
     {
-	$this->modeltree = $mod_element;
+    $this->modeltree = $mod_element;
     }
     
     public function SetRoots($roots)
@@ -38,11 +38,11 @@ class tpl_Sheet implements tpl_ElementInterface
     
     private function ContainerContainsHeading(mod_Element $container)
     {
-	$found = false;
-	foreach ($container->GetChildren() as $mod_child)
-	    if ($mod_child instanceof mod_Heading)
-		$found = true;
-	return $found;
+    $found = false;
+    foreach ($container->GetChildren() as $mod_child)
+        if ($mod_child instanceof mod_Heading)
+        $found = true;
+    return $found;
     }
     
     public function ConvertModelToTpl(mod_Element $mod_element, $headinglevel = 1)
@@ -66,17 +66,17 @@ class tpl_Sheet implements tpl_ElementInterface
         if ($i instanceof tpl_Heading) {
             $i->SetLevel($headinglevel);
         }
-    	if ($i) {
-	    $nieuweheadinglevel = $headinglevel;
-	    if ($this->ContainerContainsHeading($mod_element))
-		$nieuweheadinglevel += 1;
-	    foreach ($mod_element->GetChildren() as $mod_child) {
-		$tpl_child = $this->ConvertModelToTpl($mod_child, $nieuweheadinglevel);
-		if ($tpl_child)
-		    $i->AddChild($tpl_child);
-	    }
-	}
-	return $i;
+        if ($i) {
+        $nieuweheadinglevel = $headinglevel;
+        if ($this->ContainerContainsHeading($mod_element))
+        $nieuweheadinglevel += 1;
+        foreach ($mod_element->GetChildren() as $mod_child) {
+        $tpl_child = $this->ConvertModelToTpl($mod_child, $nieuweheadinglevel);
+        if ($tpl_child)
+            $i->AddChild($tpl_child);
+        }
+    }
+    return $i;
     }
     
     public function EditSub($parenttree, mod_Element $after_element = null)
@@ -349,7 +349,7 @@ class tpl_Sheet implements tpl_ElementInterface
              . "<div class=paginakoprechts><div class=paginakopkop>\n"
              . "<h1>$title</h1>\n"
              . "</div></div>\n"
-             . "<div class=paginazelf>";        
+             . "<div class=paginazelf>";
     }
     
     private function SwitchToMenu()
@@ -404,9 +404,9 @@ class tpl_Sheet implements tpl_ElementInterface
     
     public function GetContents()
     {
-	$tplroot = $this->ConvertModelToTpl($this->modeltree, 1);
+    $tplroot = $this->ConvertModelToTpl($this->modeltree, 1);
         $title = $this->GetTitle($tplroot);
-	return $this->PageStart($title) 
+    return $this->PageStart($title) 
              . $this->FrameWithElement($tplroot, $this->roots) 
              . $this->SwitchToMenu()
              . $this->__TMPEDITMENU($tplroot->GetID())
@@ -414,7 +414,7 @@ class tpl_Sheet implements tpl_ElementInterface
     }
     
     public function GetForm() {
-	return false;
+    return false;
     }
     
     public function SetFromForm(array $formdata)

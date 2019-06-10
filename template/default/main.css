@@ -2,126 +2,126 @@
 
 @media (max-width: 640px),
        (max-width: 1200px) and (min-resolution: 2dppx)
-	{
-	div.pagina {
-		margin: 0 auto;
-		width: 100%;
-		position: relative;
-	}
+    {
+    div.pagina {
+        margin: 0 auto;
+        width: 100%;
+        position: relative;
+    }
 
-	div.paginakoplinks {
-		display: none;
-	}
+    div.paginakoplinks {
+        display: none;
+    }
 
-	div.paginarechts {
-		position: absolute;
-		width: 90%;
-		left: 5%;
-		top: 3em;
-	}
+    div.paginarechts {
+        position: absolute;
+        width: 90%;
+        left: 5%;
+        top: 3em;
+    }
 
-	div.menu {
-		width: 100%;
-        	position: fixed;
-        	top: 0px;
-		background-color: #632C1B;
-	}
+    div.menu {
+        width: 100%;
+            position: fixed;
+            top: 0px;
+        background-color: #632C1B;
+    }
 
-	div.menupart {
-		display: inline-block;
-	}
+    div.menupart {
+        display: inline-block;
+    }
 
-	div.menukastje {
-		display: none;
-		position: absolute;
-		opacity: 0.95;
+    div.menukastje {
+        display: none;
+        position: absolute;
+        opacity: 0.95;
     -webkit-box-shadow: 0 0 10px 0px #505050;
        -moz-box-shadow: 0 0 10px 0px #505050;
             box-shadow: 0 0 10px 0px #505050;
-	}
-	
-	div.menutitel {
-		display: inline-block;
-	}
+    }
+    
+    div.menutitel {
+        display: inline-block;
+    }
 
-	div.menupart:hover div.menukastje {
-		display: block;
-		position: absolute;
-	}
-	div.menuitem {
-		overflow: hidden;
-	}
+    div.menupart:hover div.menukastje {
+        display: block;
+        position: absolute;
+    }
+    div.menuitem {
+        overflow: hidden;
+    }
 }
 
 @media (min-width: 1200px),
        (min-width: 640px) and (max-resolution: 2dppx)
-	{
-	div.pagina {
-		margin:0 auto;
-		max-width: 960px;
-		min-width: 590px;
-/*		width:expression(document.documentElement.clientWidth > 930? "930px" : "auto" ); */
-		position: relative;
-	}
+    {
+    div.pagina {
+        margin:0 auto;
+        max-width: 960px;
+        min-width: 590px;
+/*        width:expression(document.documentElement.clientWidth > 930? "930px" : "auto" ); */
+        position: relative;
+    }
 
-	div.paginakoplinks {
-		position: absolute;
-		top: 10px;
-		height: 40px;
-		left: 10px;
-		right: 10px;
-		width: 220px;
-	}
+    div.paginakoplinks {
+        position: absolute;
+        top: 10px;
+        height: 40px;
+        left: 10px;
+        right: 10px;
+        width: 220px;
+    }
 
 
-	div.paginakoprechts {
-		position: absolute;
-		left: 240px;
-		right: 10px;
-		top: 10px;
-		height: 40px;
-/*		max-width: 680px;
-		min-width: 160px; */
-	}
+    div.paginakoprechts {
+        position: absolute;
+        left: 240px;
+        right: 10px;
+        top: 10px;
+        height: 40px;
+/*        max-width: 680px;
+        min-width: 160px; */
+    }
 
-	div.paginarechts {
-		position: absolute;
-		left: 240px;
-		right: 10px;
-		top: 10px;
-/*		max-width: 680px;
-		min-width: 160px; */
-	}
+    div.paginarechts {
+        position: absolute;
+        left: 240px;
+        right: 10px;
+        top: 10px;
+/*        max-width: 680px;
+        min-width: 160px; */
+    }
 
-	div.menu {
-/*		position: absolute;
-		left: 10px;
-		top: 110px; */
-		width: 220px;
-        	position: fixed;
-	        margin-left: 10px;
-        	top: 110px;
-		overflow: hidden;
-	}
+    div.menu {
+/*        position: absolute;
+        left: 10px;
+        top: 110px; */
+        width: 220px;
+            position: fixed;
+            margin-left: 10px;
+            top: 110px;
+        overflow: hidden;
+    }
 
-	div.menutitel {
-		background-color: #632C1B;
-        	border-top-left-radius: 7px;
-	        border-top-right-radius: 7px;
-        	-moz-border-radius-topleft: 7px;
-	        -moz-border-radius-topright: 7px;
-	}
+    div.menutitel {
+        background-color: #632C1B;
+            border-top-left-radius: 7px;
+            border-top-right-radius: 7px;
+            -moz-border-radius-topleft: 7px;
+            -moz-border-radius-topright: 7px;
+    }
 
-	div.menukastje {
-	        opacity: 0.8;
-	}
+    div.menukastje {
+            opacity: 0.8;
+    }
 }
 
 @media (min-resolution: 2dppx)
 {
-/*	body {
-		font-size: 30pt;
-	} */
+/*    body {
+        font-size: 30pt;
+    } */
 }
 
 @media (max-resolution: 2dppx)
@@ -131,35 +131,35 @@
 /* ALGEMENE OPMAAK */
 
 body {
-	margin: 0;
+    margin: 0;
         background-image:url('bg.png');
         background-color: #31B550;
-	font-family: Georgia, "Times New Roman", Times, Serif;
+    font-family: Georgia, "Times New Roman", Times, Serif;
 }
 
 a:link {
-	color: #444F88;
-	text-decoration: none;
+    color: #444F88;
+    text-decoration: none;
 }
 a:visited {
-	color: #444F88;
-	text-decoration: none;
+    color: #444F88;
+    text-decoration: none;
 }
 a:hover {
-	color: #45631B;
-	text-decoration: underline;
+    color: #45631B;
+    text-decoration: underline;
 }
 a.img:hover {
-	background: none;
-	text-decoration: none;
+    background: none;
+    text-decoration: none;
 }
 
 h2 {
-	color: #45631B;
-	font-size: larger;
-	margin-top: 0px;
-	border-bottom: 1px dotted #45631B;
-	font-family: "Trebuchet MS", Arial, Helvetica, Sans-Serif;
+    color: #45631B;
+    font-size: larger;
+    margin-top: 0px;
+    border-bottom: 1px dotted #45631B;
+    font-family: "Trebuchet MS", Arial, Helvetica, Sans-Serif;
 }
 
 h3 {
@@ -168,18 +168,18 @@ h3 {
 }
 
 pre {
-	font-size: 10pt;
+    font-size: 10pt;
 }
 
 .cmd {
-	font-family: Courier New, Courier;
+    font-family: Courier New, Courier;
 }
 
 div.paginakopkop {
-	font-family: "Trebuchet MS", Arial, Helvetica, Sans-Serif;
+    font-family: "Trebuchet MS", Arial, Helvetica, Sans-Serif;
         padding: 8px;
-	background-color: #632C1B;
-	color: #EFECE3;
+    background-color: #632C1B;
+    color: #EFECE3;
         text-shadow: 1px 1px 2px #000000;
         border-top-left-radius: 7px;
         border-top-right-radius: 7px;
@@ -211,8 +211,8 @@ div.paginazelf {
 }
 
 div.menutitel {
-	font-weight: bold;
-	color: #FFFFFF;
+    font-weight: bold;
+    color: #FFFFFF;
         padding: 7px;
 }
 
@@ -222,13 +222,13 @@ div.menu a {
 }
 
 div.menutitel a {
-	color: #EFECE3;
+    color: #EFECE3;
 }
 
 div.menukastje {
-	background-color: #FFFFFF;
-/*	font-weight: bold; */
-	margin-bottom: 10px;
+    background-color: #FFFFFF;
+/*    font-weight: bold; */
+    margin-bottom: 10px;
         border-bottom-left-radius: 7px;
         border-bottom-right-radius: 7px;
         -moz-border-radius-bottomleft: 7px;
@@ -248,23 +248,23 @@ div.menuitem {
 }
 
 p.copyright {
-	font-size: 8pt;
-	font-style: italic;
-	text-align: center;
+    font-size: 8pt;
+    font-style: italic;
+    text-align: center;
         margin-top: 50px;
         margin-bottom: -50px;
         padding-bottom: 10px;
 }
 
 p {
-	margin-top: 0px;
-	text-align: justify;
+    margin-top: 0px;
+    text-align: justify;
 }
 
 h1 {
-	margin-top: 0px;
-	margin-bottom: 0px;
-	padding: 0px 0px 0px 5px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding: 0px 0px 0px 5px;
 }
 
 /*p.imgself img.withborder {
@@ -306,43 +306,43 @@ p.imgcaption {
 }
 
 span.imgnocookies {
-	display: inline-block;
-	color: #FFFFFF;
-	background-color: #404040;
+    display: inline-block;
+    color: #FFFFFF;
+    background-color: #404040;
 }
 span.imgnocookiestext {
-	display: inline-block;
-	margin: 25px 25px 25px 25px;
-	text-align: center;
+    display: inline-block;
+    margin: 25px 25px 25px 25px;
+    text-align: center;
 }
 
 span.cookiebox {
-	display: block;
-	background-color: #E5E5E5;
-	border-radius: 7px; 
+    display: block;
+    background-color: #E5E5E5;
+    border-radius: 7px; 
 }
 span.cookieboxtext {
-	display: inline-block;
-	padding: 10px 10px 10px 10px;
+    display: inline-block;
+    padding: 10px 10px 10px 10px;
 }
 span.cookieboxbuttonarea {
-	display: block;
-	text-align: center;
-	padding: 10px 10px 10px 10px; 
+    display: block;
+    text-align: center;
+    padding: 10px 10px 10px 10px; 
 }
 span.cookieboxbutton {
-	display: inline-block;
-	background-color: #632C1B;
-	color: #FFFFFF;
-	border-radius: 7px; 
+    display: inline-block;
+    background-color: #632C1B;
+    color: #FFFFFF;
+    border-radius: 7px; 
 }
 span.cookieboxbuttontext {
-	display: inline-block;
-	text-align: center;
-	padding: 5px 5px 5px 5px;
+    display: inline-block;
+    text-align: center;
+    padding: 5px 5px 5px 5px;
 }
 span.cookieboxbutton a {
-	color: #FFFFFF;
+    color: #FFFFFF;
 }
 
 .pp_description {
@@ -353,168 +353,168 @@ span.cookieboxbutton a {
 /* OPMAAK VOOR PLAATJES */
 
 img.rechts {
-	float: right;
-	margin-left: 10px;
+    float: right;
+    margin-left: 10px;
 }
 
 img.links {
-	float: left;
-	margin-right: 10px;
+    float: left;
+    margin-right: 10px;
 }
 
 img.link {
-	border-style: none;
+    border-style: none;
 }
 
 .kop {
-	background-color: #DDDDFF;
-	font-family: "Trebuchet MS", Arial, Helvetica, Sans-Serif;
+    background-color: #DDDDFF;
+    font-family: "Trebuchet MS", Arial, Helvetica, Sans-Serif;
 }
 
 .navigatie {
-	font-size: 10pt;
+    font-size: 10pt;
 }
 
 .albumregel {
-	float: left;
-	width: 100%;
-	text-align: center;
+    float: left;
+    width: 100%;
+    text-align: center;
 }
 
 /* OPMAAK VOOR EDITOR */
 
 .invoer {
-	background: #E8E8F4;
-	border-color: #8888BB;
-	border-style: solid;
-	border-width: 1px;
+    background: #E8E8F4;
+    border-color: #8888BB;
+    border-style: solid;
+    border-width: 1px;
 }
 
 fieldset {
-	border-style: none;
-	margin: 5px;
-	padding-top: 0px;
-	padding-left: 3px;
-	padding-top: 5px;
-	padding-right: 5px;
+    border-style: none;
+    margin: 5px;
+    padding-top: 0px;
+    padding-left: 3px;
+    padding-top: 5px;
+    padding-right: 5px;
 }
 
 legend {
-	background-color: #7777BB;
-	font-weight: bold;
-	color: #FFFFFF;
-	padding: 3px;
-	margin-left: -3px;
-	width: 100%;
+    background-color: #7777BB;
+    font-weight: bold;
+    color: #FFFFFF;
+    padding: 3px;
+    margin-left: -3px;
+    width: 100%;
 }
 
 label {
-	display: block;
+    display: block;
 }
 
 input, textarea, select {
-	display: block;
-	margin-bottom: 10px;
+    display: block;
+    margin-bottom: 10px;
 }
 
 .checkboxlist {
-	max-height: 180px;
-	overflow: auto;
+    max-height: 180px;
+    overflow: auto;
 }
 
 .checkboxline {
-	display: block;
+    display: block;
 }
 
 .checkboxline input {
-	display: inline;
+    display: inline;
 }
 
 .checkboxline label {
-	display: inline;
+    display: inline;
 }
 
 input[type=submit] {
-	display: inline;
+    display: inline;
 }
 
 
 /* OPMAAK VOOR AJAX EDITOR */
 
 div.editorframe {
-	border-style: dotted;
-	border-width: 1px;
-	padding: 5px;
-	margin: 5px;
+    border-style: dotted;
+    border-width: 1px;
+    padding: 5px;
+    margin: 5px;
 }
 
 .editorframeheading {
-	font-style: italic;
-	color: #225522;
+    font-style: italic;
+    color: #225522;
 }
 
 .editorpending {
-	color: #225522;
+    color: #225522;
 }
 
 .editorinactive {
-	color: #AAAAAA;
+    color: #AAAAAA;
 }
 
 .editordeletionmarked {
-	text-decoration: line-through;
+    text-decoration: line-through;
 }
 
 /* OPMAAK VOOR PLATTENLÄDEN */
 
 .logoplaatje {
-	vertical-align:text-bottom;
-	position: absolute;
-	right: 10px;
-	top: -4px;
+    vertical-align:text-bottom;
+    position: absolute;
+    right: 10px;
+    top: -4px;
 }
 
 form { margin-top: 0px; }
 
 p.balk {
-	background-color: #8888EE;
-	font-weight: bold;
-	color: #FFFFFF;
+    background-color: #8888EE;
+    font-weight: bold;
+    color: #FFFFFF;
 }
 a.balk { background: #8888EE; text-decoration: underline }
 p.balkmetplaatje {
-	background-image: url('/Plattenladen/balk.png');
-	font-size: 12pt;
-	font-weight: bold;
-	height: 23px;
-	color: #FFFFFF;
+    background-image: url('/Plattenladen/balk.png');
+    font-size: 12pt;
+    font-weight: bold;
+    height: 23px;
+    color: #FFFFFF;
 }
 
 p.rechts {text-align: right;}
 p.center {text-align: center;}
 
 .invoertabel {
-	background: #DDDDFF;
-	border-color: #8888BB;
-	border-style: solid;
-	border-width: 1px;
+    background: #DDDDFF;
+    border-color: #8888BB;
+    border-style: solid;
+    border-width: 1px;
 }
 
 .resultaattabel {
-	border-color: #8888BB;
-	border-style: solid;
-	border-width: 1px;
+    border-color: #8888BB;
+    border-style: solid;
+    border-width: 1px;
 }
 
 .commentaartabel {
-	background: #8888EE;
-	width: 100%;
+    background: #8888EE;
+    width: 100%;
 }
 
 .zeilehead {
-	background-color: #8888EE;
-	font-weight: bold;
-	color: #FFFFFF;
+    background-color: #8888EE;
+    font-weight: bold;
+    color: #FFFFFF;
 }
 .zeile0 { background: #BBBBF7 }
 .zeile1 { background: #DDDDFF }
@@ -526,39 +526,39 @@ a.zeile1 { background: #DDDDFF; text-decoration: underline }
 .modsoort { font-size: x-small }
 
 pre.adresse {
-	margin-top: 0px;
-	margin-bottom: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
 /* STWSIM */
 
 .warn {
-	color: #FF0000;
+    color: #FF0000;
 }
 
 div.plaatjerechts {
-	float: right;
-	margin-left: 10px;
-	font-size: small;
-	font-style: italic;
+    float: right;
+    margin-left: 10px;
+    font-size: small;
+    font-style: italic;
 }
 
 /* MUZIEK */
 
 td.cd_band {
-	text-align: center;
-	font-weight: bold;
-	vertical-align: middle;
+    text-align: center;
+    font-weight: bold;
+    vertical-align: middle;
 }
 
 td.cd_type {
-	vertical-align: middle;
+    vertical-align: middle;
 }
 
 td.cd_disc {
-	font-size: 10pt;
-	text-align: center;
-	vertical-align: top;
+    font-size: 10pt;
+    text-align: center;
+    vertical-align: top;
 }
 
 table img {

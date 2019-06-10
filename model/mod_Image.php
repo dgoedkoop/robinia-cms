@@ -11,34 +11,34 @@ class mod_Image extends mod_Element implements mod_ImageInterface {
     protected $height = 0;
     
     public function GetFilename() {
-	return $this->filename;
+    return $this->filename;
     }
     public function SetFilename($filename) {
-	    $this->filename = $filename;
+        $this->filename = $filename;
     }
     public function GetAltText() {
-	    return $this->alttext;
+        return $this->alttext;
     }
     public function SetAltText($alttext) {
-	    $this->alttext = $alttext;
+        $this->alttext = $alttext;
     }
     public function GetCaption() {
-	    return $this->caption;
+        return $this->caption;
     }
     public function SetCaption($caption) {
-	    $this->caption = $caption;
+        $this->caption = $caption;
     }
     public function GetWidth() {
-	    return $this->width;
+        return $this->width;
     }
     public function SetWidth($width) {
-	    $this->width = $width;
+        $this->width = $width;
     }
     public function GetHeight() {
-	    return $this->height;
+        return $this->height;
     }
     public function SetHeight($height) {
-	    $this->height = $height;
+        $this->height = $height;
     }
     public static function GetName()
     {

@@ -6,16 +6,16 @@ class tpl_Heading extends mod_Heading implements tpl_ElementInterface
 
     public function GetLevel()
     {
-	    return $this->level;
+        return $this->level;
     }
     public function SetLevel($level)
     {
-	    $this->level = $level;
+        $this->level = $level;
     }
     
     public function GetOutput()
     {
-	    return "<h".$this->level.">".$this->text."</h".$this->level.">\n\n";
+        return "<h".$this->level.">".$this->text."</h".$this->level.">\n\n";
     }
     public function SetFromModel(mod_Element $mod_element)
     {

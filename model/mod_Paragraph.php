@@ -4,10 +4,10 @@ class mod_Paragraph extends mod_Element {
     protected $text = "";
 
     public function GetText() {
-	return $this->text;
+    return $this->text;
     }
     public function SetText($text) {
-	$this->text = $text;
+    $this->text = $text;
     }
     public static function GetName()
     {

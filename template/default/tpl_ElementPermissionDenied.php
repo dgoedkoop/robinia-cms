@@ -5,7 +5,7 @@ class tpl_ElementPermissionDenied extends mod_Container
 {
     public function GetOutput()
     {
-	return '';
+    return '';
     }
     public function SetFromModel(mod_Element $mod_element)
     {

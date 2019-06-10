@@ -76,10 +76,10 @@ class tpl_Image extends mod_Image implements tpl_ElementInterface
             $output .= '<img src="'.$this->filename.'"';
         }
         if ($this->alttext)
-	    $output .= ' alt="'.$this->alttext.'"';
+        $output .= ' alt="'.$this->alttext.'"';
         $output .= '>';
         if ($this->caption) {
-            $output .= '<br><i>'.$this->caption.'</i>';	
+            $output .= '<br><i>'.$this->caption.'</i>';
         }
         $output .= '</p>';
         return $output;
@@ -141,11 +141,11 @@ class tpl_Image extends mod_Image implements tpl_ElementInterface
         if (!($mod_element instanceof mod_Image)) {
             return false;
         }
-	$this->SetFilename($mod_element->GetFilename());
-	$this->SetAltText($mod_element->GetAltText());
-	$this->SetCaption($mod_element->GetCaption());
-	$this->SetWidth($mod_element->GetWidth());
-	$this->SetHeight($mod_element->GetHeight());
+    $this->SetFilename($mod_element->GetFilename());
+    $this->SetAltText($mod_element->GetAltText());
+    $this->SetCaption($mod_element->GetCaption());
+    $this->SetWidth($mod_element->GetWidth());
+    $this->SetHeight($mod_element->GetHeight());
         return true;
     }
 }

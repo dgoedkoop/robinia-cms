@@ -28,9 +28,9 @@ function SavePages(mod_Database $db, mod_Element $mod_element, $parent_id = 0, $
 $x = new mod_Database($options);
 if ($x->Connect()) {
     if ($x->CreateTables()) {
-	echo "Setup succeeded creating tables.\n";
+    echo "Setup succeeded creating tables.\n";
     } else {
-	echo "Setup failed: Error creating tables.\n";
+    echo "Setup failed: Error creating tables.\n";
     }
 } else {
     echo "Setup failed: Error connecting to database.\n";
