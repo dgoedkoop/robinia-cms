@@ -1,9 +1,5 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 class tpl_MenuItem implements tpl_ElementInterface
 {
     protected $children = array();

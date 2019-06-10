@@ -116,19 +116,19 @@ class mod_Database
     }
     public function Connect()
     {
-	try {
-	    $this->db = 
+	    try {
+	        $this->db = 
                 new PDO('mysql:host=' . $this->options->GetOption('db_hostname')
                       . ';dbname=' . $this->options->GetOption('db_database')
                       . ';charset=utf8',
                         $this->options->GetOption('db_username'),
                         $this->options->GetOption('db_password'));
             $this->db->query("SET NAMES 'utf8'");
-	} catch (PDOException $e) {
-	    trigger_error($e->getMessage());
-	    return false;
-	}
-	return true;
+	    } catch (PDOException $e) {
+	        trigger_error($e->getMessage());
+	        return false;
+	    }
+	    return true;
     }
     public function SetDb($db)
     {
@@ -136,12 +136,12 @@ class mod_Database
     }
     public function CheckError()
     {
-	if ($this->db->errorCode() != '00000') {
-	    $errorinfo = $this->db->errorInfo();
-	    echo "SQL Error: ".$errorinfo[2]."\n";
-	    return false;
-	} else
-	    return true;
+        if ($this->db->errorCode() != '00000') {
+            $errorinfo = $this->db->errorInfo();
+            echo "SQL Error: ".$errorinfo[2]."\n";
+            return false;
+        } else
+            return true;
     }
     public function IsValidElement($element)
     {
@@ -163,9 +163,9 @@ class mod_Database
             $classname = 'mod_' . $classbase;
             /* PHP bug: PHP at some web hosting providers acts stupidly when
              * combining is_callable or call_user_func with __autoload. */
-/*          $callable = array($classname, 'GetName');
-            if (is_callable($callable)) {
-                if (call_user_func($callable) == $typename) { */
+            //$callable = array($classname, 'GetName');
+            //if (is_callable($callable)) {
+            //    if (call_user_func($callable) == $typename) {
             $x = new $classname($this->options);
             if (is_callable(array($x, 'GetName'))) {
                 if ($x->GetName() == $typename) {
@@ -216,9 +216,9 @@ class mod_Database
             return false;
         } catch (PDOException $e) {
             $this->SetMode($oldmode);
-	    trigger_error($e->getMessage());
-	    return false;
-	}
+	        trigger_error($e->getMessage());
+	        return false;
+    	}
     }
     public function LoadGroup($match, $mode)
     {
@@ -261,9 +261,9 @@ class mod_Database
             return false;
         } catch (PDOException $e) {
             $this->SetMode($oldmode);
-	    trigger_error($e->getMessage());
-	    return false;
-	}
+	        trigger_error($e->getMessage());
+	        return false;
+	    }
     }
     public function LoadLink($linkname)
     {
@@ -285,9 +285,9 @@ class mod_Database
             }
             return false;
         } catch (PDOException $e) {
-	    trigger_error($e->getMessage());
-	    return false;
-	}
+	        trigger_error($e->getMessage());
+	        return false;
+	    }
     }
     public function LoadTypeAll($classbase)
     {
@@ -321,9 +321,9 @@ class mod_Database
             }
             return $result;
         } catch (PDOException $e) {
-	    trigger_error($e->getMessage());
-	    return false;
-	}
+	        trigger_error($e->getMessage());
+	        return false;
+	    }
     }
     private function LoadElementData($element_id, $typename)
     {
@@ -552,9 +552,9 @@ class mod_Database
                 return false;
             }
         } catch (PDOException $e) {
-	    trigger_error($e->getMessage());
-	    return false;
-	}
+	        trigger_error($e->getMessage());
+	        return false;
+	    }
     }
     /*
      * Finds the parent element ID. It accepts both an instance of mod_Element
@@ -583,9 +583,9 @@ class mod_Database
                 return false;
             }
         } catch (PDOException $e) {
-	    trigger_error($e->getMessage());
-	    return false;
-	}
+	        trigger_error($e->getMessage());
+	        return false;
+	    }
     }
     /*
      * This function is for calling at the end of a commit cycle. The group
@@ -594,7 +594,7 @@ class mod_Database
      */
     private function UpdateGroupMemberships($uid, $groups)
     {
-	$tbl_prefix = $this->options->GetOption('tbl_prefix');
+	    $tbl_prefix = $this->options->GetOption('tbl_prefix');
 
         $sql_d = "DELETE FROM {$tbl_prefix}groupmembership WHERE uid = :uid;";
         $sql_i = "INSERT INTO {$tbl_prefix}groupmembership SET "
@@ -799,9 +799,9 @@ class mod_Database
             }
             return true;
         } catch (PDOException $e) {
-	    trigger_error($e->getMessage());
-	    return false;
-	}
+	        trigger_error($e->getMessage());
+	        return false;
+	    }
     }
     /* 
      * Activate the specified element and commit any pending changes to its
@@ -853,9 +853,9 @@ class mod_Database
             }
             return $status;
         } catch (PDOException $e) {
-	    trigger_error($e->getMessage());
-	    return self::commit_error;
-	}
+	        trigger_error($e->getMessage());
+	        return self::commit_error;
+    	}
     }
     /*
      * Create an element. Returns the new element id.
@@ -865,7 +865,7 @@ class mod_Database
     private function CreateElement(mod_Element $mod_element,
         $parent_element = null, $order_index = 0)
     {
-	$tbl_prefix = $this->options->GetOption('tbl_prefix');
+	    $tbl_prefix = $this->options->GetOption('tbl_prefix');
         
         if (!$this->GetPermissionOverride(self::perm_over_store)) {
             if (!$this->IsValidElement($parent_element)) {
@@ -920,7 +920,7 @@ class mod_Database
         mod_Element $parent_element = null)
     {
         $tbl_prefix = $this->options->GetOption('tbl_prefix');
-	try {
+	    try {
             if (!$this->GetPermissionOverride(self::perm_over_deactivate)) {
                 if (!$mod_element->GetPermissions()->HasPermission(
                     $this->currentuser, mod_Permissions::perm_edit)) {
@@ -976,10 +976,10 @@ class mod_Database
                 }
                 return $result;
             }
-	} catch (PDOException $e) {
-	    trigger_error($e->getMessage());
-	    return false;
-	}
+        } catch (PDOException $e) {
+            trigger_error($e->getMessage());
+            return false;
+        }
     }
     /*
      * Mark an element for being disabled. This only works for elements which
@@ -1057,7 +1057,7 @@ class mod_Database
     private function StoreElement(mod_Element $mod_element, $parent_id = 0,
         $order_index = 0)
     {
-	$tbl_prefix = $this->options->GetOption('tbl_prefix');
+	    $tbl_prefix = $this->options->GetOption('tbl_prefix');
         $tbl_name = $mod_element->GetDbTableName();
 
         $oldrecursive = $this->GetRecursive();
@@ -1145,7 +1145,7 @@ class mod_Database
     public function AddElement(mod_Element $mod_element, $parent_id = 0,
         $after_element = 0)
     {
-	try {
+	    try {
             // Find out the desired order index
             $order_index = $this->GetOrderIndex($parent_id, $after_element);
             if ($order_index === false) {
@@ -1156,10 +1156,10 @@ class mod_Database
             if (!$ok) {
                 return false;
             }
-	} catch (PDOException $e) {
-	    trigger_error($e->getMessage());
-	    return false;
-	}        
+        } catch (PDOException $e) {
+            trigger_error($e->getMessage());
+            return false;
+        }        
     }
     
     /*
@@ -1263,10 +1263,10 @@ class mod_Database
                 $inc_statement->execute();
             }
             return true;
-	} catch (PDOException $e) {
-	    trigger_error($e->getMessage());
-	    return false;
-	}        
+    	} catch (PDOException $e) {
+	        trigger_error($e->getMessage());
+	        return false;
+	    }        
     }
 
     /*
@@ -1275,14 +1275,15 @@ class mod_Database
      * Permission required: changeperm
      */
     public function UpdatePermissions(mod_Element $mod_element,
-        mod_Permissions $newpermissions) {
+        mod_Permissions $newpermissions)
+    {
         if (!$mod_element->GetPermissions()->HasPermission($this->currentuser,
             mod_Permissions::perm_changeperm) && 
             !$this->GetPermissionOverride(self::perm_over_changeperm)) {
             return false;
         }
 
-	try {
+	    try {
             $tbl_prefix = $this->options->GetOption('tbl_prefix');
             $delete_sql = "DELETE FROM {$tbl_prefix}acl "
                         . "WHERE element_id = :id;";
@@ -1315,10 +1316,10 @@ class mod_Database
             $mod_element->SetPermissions($newpermissions);
             $this->UpdateCaches($mod_element);
             return true;
-	} catch (PDOException $e) {
-	    trigger_error($e->getMessage());
-	    return false;
-	}
+        } catch (PDOException $e) {
+            trigger_error($e->getMessage());
+            return false;
+        }
     }
     
     private function UpdateCaches(mod_Element $mod_element) {
@@ -1348,7 +1349,7 @@ class mod_Database
         }        
         $old_permission_overrides = $this->GetPermissionOverrides();
         
-	try {
+	    try {
             if ($mod_element instanceof mod_User) {
                 $this->user_cache[$mod_element->GetUID()] = $mod_element;
                 /*
@@ -1400,11 +1401,11 @@ class mod_Database
                 return false;
             }
             $this->SetPermissionOverrides($old_permission_overrides);
-	} catch (PDOException $e) {
-            $this->SetPermissionOverrides($old_permission_overrides);
-	    trigger_error($e->getMessage());
-	    return false;
-	}
+        } catch (PDOException $e) {
+                $this->SetPermissionOverrides($old_permission_overrides);
+            trigger_error($e->getMessage());
+            return false;
+        }
     }
 
     public function RegisterEvent($action, $success, $user, $object, $info) {
@@ -1439,10 +1440,10 @@ class mod_Database
             $statement->bindParam(':info', $info);
             $statement->execute();
             return true;
-	} catch (PDOException $e) {
-	    trigger_error($e->getMessage());
-	    return false;
-	}
+        } catch (PDOException $e) {
+            trigger_error($e->getMessage());
+            return false;
+        }
     }
             
     /*
@@ -1451,7 +1452,7 @@ class mod_Database
      */
     public function CreateTableForClass($classname)
     {
-	$tbl_prefix = $this->options->GetOption('tbl_prefix');
+	    $tbl_prefix = $this->options->GetOption('tbl_prefix');
 
         $callable_name = array($classname, 'GetDbTableName');
         $callable_definition = array($classname, 'GetDbTableDefinition');
@@ -1485,8 +1486,8 @@ class mod_Database
     }
     public function CreateTables()
     {
-	$tbl_prefix = $this->options->GetOption('tbl_prefix');
-	try {
+	    $tbl_prefix = $this->options->GetOption('tbl_prefix');
+	    try {
             $this->db->query("DROP TABLE IF EXISTS {$tbl_prefix}element, "
                            . "{$tbl_prefix}groupmembership, "
                            . "{$tbl_prefix}acl, "
@@ -1533,11 +1534,11 @@ class mod_Database
                 $classname = 'mod_' . $classbase;
                 $this->CreateTableForClass($classname);
             }
-	} catch (PDOException $e) {
-	    trigger_error($e->getMessage());
-	    return false;
-	}
-	return true;
+        } catch (PDOException $e) {
+            trigger_error($e->getMessage());
+            return false;
+        }
+        return true;
     }
 }
 
