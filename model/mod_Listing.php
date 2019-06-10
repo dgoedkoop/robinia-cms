@@ -4,17 +4,17 @@ class mod_Listing extends mod_Element {
     protected $items = array();
      
     public function GetItems() {
-	return $this->items;
+	    return $this->items;
     }
     public function ResetItems()
     {
         $this->items = array();
     }
     public function AddItem($text) {
-	$this->items[] = $text;
+	    $this->items[] = $text;
     }
     public function AddItems(array $items) {
-	$this->items = array_merge($this->items, $items);
+	    $this->items = array_merge($this->items, $items);
     }
     public static function GetName()
     {

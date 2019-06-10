@@ -119,9 +119,9 @@
 
 @media (min-resolution: 2dppx)
 {
-	body {
-/*		font-size: 30pt; */
-	}
+/*	body {
+		font-size: 30pt;
+	} */
 }
 
 @media (max-resolution: 2dppx)
@@ -265,9 +265,6 @@ h1 {
 	margin-top: 0px;
 	margin-bottom: 0px;
 	padding: 0px 0px 0px 5px;
-}
-
-p.imgself img.withborder {
 }
 
 /*p.imgself img.withborder {
@@ -439,7 +436,6 @@ input, textarea, select {
 
 input[type=submit] {
 	display: inline;
-	margin-bottom: 0px;
 }
 
 
@@ -573,16 +569,3 @@ ul img {
     border-style: none !important;
     padding: 0px !important;
 }
-
-/* VOOR ANALOG */
-
-.x {background-color: #DDDDFF;}
-.xl {background-color: #DDDDFF;}
-.R {background-color: #DDDDFF;}
-.P {background-color: #DDDDFF;}
-.N {background-color: #DDDDFF;}
-.D {background-color: #DDDDFF;}
-.b {background-color: #DDDDFF;}
-.bar {background-color: #DDDDFF;}
-.gensumtitle {font-weight: bold;}
-.gensumlines {background-color: #DDDDFF;}

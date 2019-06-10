@@ -4,7 +4,6 @@ require_once 'control/options.php';
 require_once 'control/autoload.php';
 require_once 'control/page.php';
 require_once 'control/edit.php';
-require_once 'control/ajax.php';
 require_once 'control/login.php';
 require_once 'control/disable_quotes.php';
 

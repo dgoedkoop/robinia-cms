@@ -16,11 +16,11 @@ class tpl_MenuItem implements tpl_ElementInterface
 
     public function SetID($id)
     {
-	$this->element_id = $id;
+	    $this->element_id = $id;
     }
     public function GetID()
     {
-	return $this->element_id;
+	    return $this->element_id;
     }
     public function SetLinkActive($active)
     {
@@ -32,15 +32,15 @@ class tpl_MenuItem implements tpl_ElementInterface
     }
     public function GetChildren()
     {
-	return $this->children;
+	    return $this->children;
     }
     public function AddChild(tpl_MenuItem $child_element)
     {
-	$this->children[] = $child_element;
+	    $this->children[] = $child_element;
     }
     public function AddChildren(array $children)
     {
-	$this->children = array_merge($this->children, $children);
+	    $this->children = array_merge($this->children, $children);
     }
     public function GetTitle()
     {

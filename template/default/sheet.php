@@ -13,7 +13,7 @@ class tpl_Sheet implements tpl_ElementInterface
     
     public function SetModelTree(mod_Element $mod_element)
     {
-	$this->modeltree = $mod_element;
+    	$this->modeltree = $mod_element;
     }
     
     public function SetMenuTree(mod_Element $mod_element)
@@ -23,11 +23,11 @@ class tpl_Sheet implements tpl_ElementInterface
     
     private function ContainerContainsHeading(mod_Element $container)
     {
-	$found = false;
-	foreach ($container->GetChildren() as $mod_child)
-	    if ($mod_child instanceof mod_Heading)
-		$found = true;
-	return $found;
+	    $found = false;
+	    foreach ($container->GetChildren() as $mod_child)
+	        if ($mod_child instanceof mod_Heading)
+		    $found = true;
+	    return $found;
     }
     
     private function ConvertModelToTpl(mod_Element $mod_element, $headinglevel = 1)
@@ -48,16 +48,16 @@ class tpl_Sheet implements tpl_ElementInterface
             $i->SetLevel($headinglevel);
         }
     	if ($i) {
-	    $nieuweheadinglevel = $headinglevel;
-	    if ($this->ContainerContainsHeading($mod_element))
-		$nieuweheadinglevel += 1;
-	    foreach ($mod_element->GetChildren() as $mod_child) {
-		$tpl_child = $this->ConvertModelToTpl($mod_child, $nieuweheadinglevel);
-		if ($tpl_child)
-		    $i->AddChild($tpl_child);
+	        $nieuweheadinglevel = $headinglevel;
+	        if ($this->ContainerContainsHeading($mod_element))
+		        $nieuweheadinglevel += 1;
+	        foreach ($mod_element->GetChildren() as $mod_child) {
+		        $tpl_child = $this->ConvertModelToTpl($mod_child, $nieuweheadinglevel);
+	        	if ($tpl_child)
+		            $i->AddChild($tpl_child);
+	        }
 	    }
-	}
-	return $i;
+	    return $i;
     }
     
     private function ConvertMenuToTpl(mod_Element $mod_element)
@@ -69,13 +69,13 @@ class tpl_Sheet implements tpl_ElementInterface
             if ($mod_element->GetID() == $this->modeltree->GetID()) {
                 $i->SetLinkActive(false);
             }
-	    foreach ($mod_element->GetChildren() as $mod_child) {
-		$tpl_child = $this->ConvertMenuToTpl($mod_child);
-		if ($tpl_child)
-		    $i->AddChild($tpl_child);
-	    }
+	        foreach ($mod_element->GetChildren() as $mod_child) {
+		        $tpl_child = $this->ConvertMenuToTpl($mod_child);
+		        if ($tpl_child)
+		            $i->AddChild($tpl_child);
+	        }
             return $i;
-	}
+	    }
         return null;
     }
 
@@ -92,30 +92,6 @@ class tpl_Sheet implements tpl_ElementInterface
     
     private function jQuery_Lightbox()
     {
-        /*
-        return <<<EOT
-<!-- Arquivos utilizados pelo jQuery lightBox plugin -->
-	
-<script type="text/javascript" src="../js/jquery.lightbox-0.5.js"></script>
-<!-- / fim dos arquivos utilizados pelo jQuery lightBox plugin -->
-    
-<!-- Ativando o jQuery lightBox plugin -->
-<script type="text/javascript">
-	$(function() {
-//		$('#gallery a').lightBox();
-		$('a.lightbox').lightBox({	// Select all links with lightbox class
-			imageLoading: '../images/lightbox-ico-loading.gif',
-			imageBtnClose: '../images/lightbox-btn-close.gif',
-			imageBtnPrev: '../images/lightbox-btn-prev.gif',
-			imageBtnNext: '../images/lightbox-btn-next.gif',
-			imageBlank: '../images/lightbox-blank.gif',
-			txtImage: 'Foto',
-			txtOf: 'van'
-		}); 
-	});
-</script> 
-EOT;
-         */
         return <<<EOT
 <script src="../js/jquery.prettyPhoto.js" type="text/javascript"
     charset="utf-8">
@@ -215,7 +191,7 @@ EOT;
         }
         $title = $this->GetTitle($tplroot);
         $description = $this->GetDescription($tplroot);
-	$output = $this->PageStart($title, $description);
+	    $output = $this->PageStart($title, $description);
         if ($tplroot) {
             $output .= $tplroot->GetOutput();
         }

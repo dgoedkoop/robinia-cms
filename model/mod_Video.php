@@ -11,16 +11,16 @@ class mod_Video extends mod_Element implements mod_ImageInterface {
     protected $caption = "";
     
     public function GetURL() {
-	return $this->url;
+	    return $this->url;
     }
     public function SetURL($url) {
-	$this->url = $url;
+	    $this->url = $url;
     }
     public function GetCaption() {
-	return $this->caption;
+	    return $this->caption;
     }
     public function SetCaption($caption) {
-	$this->caption = $caption;
+	    $this->caption = $caption;
     }
     public function GetWidth() {
         if ($this->options->GetOption('img_lightbox')) {
