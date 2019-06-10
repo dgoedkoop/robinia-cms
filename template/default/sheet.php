@@ -125,7 +125,7 @@ EOT;
             $output .= '<META NAME="description" CONTENT="'
                      . htmlspecialchars($description) . '">';
         }
-        $output .= '<LINK rel="stylesheet" type="text/css" href="template/default/main.css">'
+        $output .= '<LINK rel="stylesheet" type="text/css" href="template/'.$this->options->GetOption('template').'/main.css">'
                  . $this->jQuery_css()
                  . '<META http-equiv="Content-type" content="text/html; '
                  . 'charset=utf-8">'
@@ -135,7 +135,7 @@ EOT;
                  . "<div class=pagina>\n"
                  . "<div class=paginakoplinks>"
                  . '<a href="index.html">'
-                 . '<img src="template/default/logo.png" alt="logo" class="link"></a>'
+                 . '<img src="template/'.$this->options->GetOption('template').'/logo.png" alt="logo" class="link"></a>'
                  . "</div>\n"
                  . "<div class=paginarechts>"
                  . "<div class=paginakopkop>\n"

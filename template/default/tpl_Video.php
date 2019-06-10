@@ -34,7 +34,7 @@ class tpl_Video extends mod_Video implements tpl_ElementInterface
             
             if ($this->options->GetOption('img_lightbox')) {
                 $output .= '<a href="' . $this->url . '" rel="lightbox">'
-                        . '<img src="template/default/play.png" class="playbtn">'
+                        . '<img src="template/'.$this->options->GetOption('template').'/play.png" class="playbtn">'
                         . '<img src="http://img.youtube.com/vi/' . $video_id
     //                     . '/0.jpg" alttext="Video" width="' . $width
     //                     . '" height="' . $height . '" class="withborder">'

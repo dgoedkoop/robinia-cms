@@ -11,8 +11,7 @@ class ctrl_Page
     public function __construct(mod_Options $options)
     {
         $this->options = $options;
-        $this->options->SetOption('template', 'default');
-        require_once 'template/default/sheet.php';
+        require_once 'template/'.$this->options->GetOption('template').'/sheet.php';
     }
     
     private function SetupDB()
