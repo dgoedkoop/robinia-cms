@@ -50,6 +50,8 @@ class Main
             $this->action = ucfirst(strtolower($_GET['a']));
         }
         $this->parameters = $_GET;
+        unset($this->parameters['a']);
+        unset($this->parameters['c']);
     }
     
     public function Setup()

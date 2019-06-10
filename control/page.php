@@ -1,6 +1,7 @@
 <?php
 
 require_once 'model/database.php';
+require_once 'model/clientstorage.php';
 
 class ctrl_Page
 {
@@ -214,6 +215,16 @@ class ctrl_Page
         } else {
             $this->Page404('filename=' . $linkname);
         }
+    }
+
+    public function AjaxSetClientStorage(array $parameters)
+    {
+        /* The security risk is limited, because the parameters are from HTTP GET,
+         * which has quite a small length limit */
+        foreach ($parameters as $key => $value) {
+            mod_ClientStorage::instance()->SetOption($key, $value);
+        }
+        echo 'Success!';
     }
     
 }
