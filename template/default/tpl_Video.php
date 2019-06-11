@@ -54,8 +54,8 @@ class tpl_Video extends mod_Video implements tpl_ElementInterface
             }
         } else {
             $output = '<p class="imgself"><span class="imgnocookies" style="'
-                    . 'width: '.$this->displaywidth.'px; '
-                    . 'height: '.$this->displayheight.'px;"><span class="imgnocookiestext">'
+                    . 'width: '.$width.'px; '
+                    . 'height: '.$height.'px;"><span class="imgnocookiestext">'
                     . 'The video cannot be displayed because cookies are not accepted.'
                     . '</span></span>';
         }
