@@ -13,6 +13,7 @@ Robinia CMS has the following external dependencies:
 * PHP
 * MariaDB or MySQL
 * mod_rewrite or equivalent
+* jQuery with prettyPhoto (for the default template)
 
 Installation
 ------------
@@ -30,6 +31,9 @@ To install Robinia CMS, please use the following steps:
    default user name is `admin` with the password `admin`. From the backend,
    you can change the password, add a regular user and start adding
    contents.
+7. For the image lightboxes to work, you have to install jQuery as
+   `js/jquery.js` and prettyPhoto as `js/jquery.prettyPhoto.js`, plus
+   accompanying css and image files.
 
 To simplify things for a personal home page, you can use the following steps:
 
