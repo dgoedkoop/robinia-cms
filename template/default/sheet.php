@@ -81,19 +81,18 @@ class tpl_Sheet implements tpl_ElementInterface
 
     private function jQuery_css()
     {
-/*        return '<link rel="stylesheet" type="text/css" href="../css/jquery.lightbox-0.5.css" media="screen">';*/
-        return '<link rel="stylesheet" href="../css/prettyPhoto.css" '
+        return '<link rel="stylesheet" href="css/prettyPhoto.css" '
              . 'type="text/css" media="screen" charset="utf-8">';
     }
     private function jQuery_Start()
     {
-        return '<script type="text/javascript" src="../js/jquery-1.8.2.min.js"></script>';
+        return '<script type="text/javascript" src="js/jquery.js"></script>';
     }
     
     private function jQuery_Lightbox()
     {
         return <<<EOT
-<script src="../js/jquery.prettyPhoto.js" type="text/javascript"
+<script src="js/jquery.prettyPhoto.js" type="text/javascript"
     charset="utf-8">
 </script>
 <script type="text/javascript" charset="utf-8">
@@ -132,15 +131,15 @@ EOT;
                  . "\n</HEAD>\n"
                  . "<BODY>\n"
                  . $this->jQuery_Start()
-                 . "<div class=pagina>\n"
-                 . "<div class=paginakoplinks>"
+                 . "<div class=page>\n"
+                 . "<div class=pageheadingleft>"
                  . '<a href="index.html">'
                  . '<img src="template/'.$this->options->GetOption('template').'/logo.png" alt="logo" class="link"></a>'
                  . "</div>\n"
-                 . "<div class=paginarechts>"
-                 . "<div class=paginakopkop>\n"
+                 . "<div class=pageright>"
+                 . "<div class=pageheadingheading>\n"
                  . "<h1>$title</h1>\n"
-                 . "</div><div class=paginazelf>\n";
+                 . "</div><div class=pagemain>\n";
         return $output;
     }
     

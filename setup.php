@@ -112,7 +112,7 @@ $loginparagraph = new mod_Paragraph($options);
 $loginpage->AddChild($loginparagraph);
 $loginparagraph->SetPermissions($loginpagepermissions);
 $loginparagraph->SetText(<<<EOT
-<div class=invoer><form method=post action="index.php?c=login&amp;a=login">
+<div class=inputarea><form method=post action="index.php?c=login&amp;a=login">
 <fieldset><legend>Login</legend>
 <label>Username:</label><input type=text name=username>
 <label>Password:</label><input type=password name=password>

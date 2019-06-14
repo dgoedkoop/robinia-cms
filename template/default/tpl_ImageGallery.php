@@ -39,7 +39,7 @@ class tpl_ImageGallery extends mod_ImageGallery implements tpl_ElementInterface
                                . '%">';
                     $box_end = '</div>';
                 }
-                $output .= "<div class=albumregel>";
+                $output .= "<div class=albumline>";
                 foreach($buffer as $img) {
                     $output .= $box_start . $img->GetOutput() . $box_end;
                 }
@@ -66,7 +66,7 @@ class tpl_ImageGallery extends mod_ImageGallery implements tpl_ElementInterface
                 $pagewidth = self::page_width
                            - self::img_bordersize * 2 * $handlingcount;
                 $height = false;
-                $output .= "<div class=albumregel>";
+                $output .= "<div class=albumline>";
                 foreach($handling as $img) {
                     $factor = $pagewidth / ($img->GetHeight() * $bhsum);
                     if ($height === false) {

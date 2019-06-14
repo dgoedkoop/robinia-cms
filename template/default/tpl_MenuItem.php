@@ -72,9 +72,9 @@ class tpl_MenuItem implements tpl_ElementInterface
         if (count($this->children) == 0) {
             return '';
         }
-        $output = '<div class="menupart"><div class="menutitel">'
+        $output = '<div class="menupart"><div class="menutitle">'
                 . $this->LinkForItem($this)
-                . '</div><div class="menukastje">';
+                . '</div><div class="menubox">';
         foreach($this->children as $child) {
             $output .= '<div class="menuitem">' . $this->LinkForItem($child)
                      . '</div>';
