@@ -1,0 +1,266 @@
+/* POSITIONING */
+
+div.page {
+    margin:0 auto;
+    max-width: 930px;
+    min-width: 590px;
+    position: relative;
+}
+
+div.pageheadingleft {
+    position: absolute;
+    top: 10px;
+    height: 40px;
+    left: 10px;
+    right: 10px;
+    width: 220px;
+}
+
+div.pageheadingright {
+    position: absolute;
+    left: 240px;
+    right: 10px;
+    top: 10px;
+    height: 40px;
+}
+
+div.pagemain {
+    position: absolute;
+    left: 240px;
+    right: 10px;
+    top: 74px;
+}
+
+div.menu {
+    position: absolute;
+    left: 10px;
+    width: 220px;
+    top: 74px;
+    overflow: hidden;
+}
+
+/* FORMATTING */
+
+body {
+    margin: 0;
+    background-color: #FFFFF7;
+    font-family: Georgia, "Times New Roman", Times, Serif;
+}
+
+p {
+    margin-top: 0px;
+    text-align: justify;
+}
+
+a:link {
+    color: #444488;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #444488;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #225522;
+    text-decoration: underline;
+}
+
+a.img:hover {
+    background: none;
+    text-decoration: none;
+}
+
+h1 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding: 7px 7px 7px 7px;
+}
+
+h2 {
+    color: #225522;
+    font-size: larger;
+    margin-top: 0px;
+    border-bottom: 1px dotted #225522;
+    font-family: "Trebuchet MS", Arial, Helvetica, Sans-Serif;
+}
+
+pre {
+    font-size: 10pt;
+}
+
+.cmd {
+    font-family: Courier New, Courier;
+}
+
+div.pageheadingheading {
+    font-family: "Trebuchet MS", Arial, Helvetica, Sans-Serif;
+    background-color: #7777BB;
+    color: #FFFFFF;
+    width: 100%;
+}
+
+div.menutitle {
+    background-color: #7777BB;
+    font-weight: bold;
+    color: #FFFFFF;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-left: 7px;
+    padding-right: 7px;
+}
+
+div.menutitle a {
+    color: #FFFFFF;
+}
+
+div.menulink {
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-left: 7px;
+    padding-right: 7px;
+    width: 206px;
+}
+
+div.menulink:hover {
+    background-color: #CCCCBB;
+}
+
+div.menulink > a:hover {
+    text-decoration: none;
+}
+
+div.menubox {
+    background-color: #EEEEDD;
+    margin-bottom: 10px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+/* FORMATTING FOR EDITOR */
+
+.editorframeheading {
+    font-style: italic;
+    color: #225522;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+.editorlinkbox {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+a.editbutton {
+    background: #E1E1C3;
+    border-radius: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    margin-left: 5px;
+    margin-right: 5px;
+    color: #225522;
+    text-decoration: none;
+    font-style: normal;
+    font-family: "Trebuchet MS", Arial, Helvetica, Sans-Serif;
+    box-shadow: inset -1px -1px 2px 0px #D3D4A8, inset 1px 1px 2px 0px #EEEEDD;
+}
+
+.editorframeheading > a.editbutton:first-child {
+    margin-left: 15px;
+}
+
+.inputarea {
+    background: #E8EAF4;
+    border-color: #8891BC;
+    border-style: solid;
+    border-width: 1px;
+}
+
+fieldset {
+    border-style: none;
+    margin: 5px;
+    padding-top: 0px;
+    padding-left: 3px;
+    padding-top: 5px;
+    padding-right: 5px;
+}
+
+legend {
+    background-color: #7782BB;
+    font-weight: bold;
+    color: #FFFFFF;
+    padding: 3px;
+    margin-left: -3px;
+    width: 100%;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+input, textarea, select {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.checkboxlist {
+    max-height: 180px;
+    overflow: auto;
+}
+
+.checkboxline {
+    display: block;
+}
+
+.checkboxline input {
+    display: inline;
+}
+
+.checkboxline label {
+    display: inline;
+}
+
+th {
+    font-weight: normal;
+}
+
+th.vertical {
+	height: 120pt;
+	vertical-align: bottom;
+}
+
+th.vertical > div {
+    text-align: left;
+	transform: translate(6pt, -6pt) rotate(315deg);
+    white-space: nowrap;
+    width: 28pt;
+}
+
+input[type=submit] {
+    display: inline;
+}
+
+/* OPMAAK VOOR AJAX EDITOR */
+
+div.editorframe {
+    border-style: dotted;
+    border-width: 1px;
+    padding: 5px;
+    margin: 5px;
+}
+
+.editorpending {
+    color: #225522;
+}
+
+.editorinactive {
+    color: #AAAAAA;
+}
+
+.editordeletionmarked {
+    text-decoration: line-through;
+}

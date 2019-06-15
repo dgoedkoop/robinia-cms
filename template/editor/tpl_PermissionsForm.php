@@ -49,34 +49,16 @@ class tpl_PermissionsForm
         return $output;
     }
     
-    /* 
-     * Of course this is not beautiful but it is the only way it works because
-     * browsers apparently cannot themselves calculate the proper size for a
-     * table cell with rotated text.
-     */
-    private function VerticalTableTextFix()
-    {
-        return <<<EOT
-<script src="../js/jquery-1.8.2.min.js" type="text/javascript"></script>
-<script src="../js/jquery.rotatetablecell.js" type="text/javascript"></script>
-<script type="text/javascript">
-    $(document).ready(function(){
-        $('.tablewithvertical').rotateTableCellContent();
-    });
-</script>
-EOT;
-    }
-    
     public function GetForm($permissions = null)
     {
         $output = '<table class=tablewithvertical>'
-                . '<tr><td></td><td class=vertical>Weergeven</td>'
-                . '<td class=vertical>Bewerken</td>'
-                . '<td class=vertical>Wijzingen doorvoeren</td>'
-                . '<td class=vertical>Sub-elementen toevoegen</td>'
-                . '<td class=vertical>Sub-elementen verwijderen</td>'
-                . '<td class=vertical>Rechten aanpassen</td>'
-                . '<td class=vertical>Dit recht verwijderen</td></tr>';
+                . '<tr><th></th><th class=vertical><div>Weergeven</div></th>'
+                . '<th class=vertical><div>Bewerken</div></th>'
+                . '<th class=vertical><div>Wijzingen doorvoeren</div></th>'
+                . '<th class=vertical><div>Sub-elementen toevoegen</div></th>'
+                . '<th class=vertical><div>Sub-elementen verwijderen</div></th>'
+                . '<th class=vertical><div>Rechten aanpassen</div></th>'
+                . '<th class=vertical><div>Dit recht verwijderen</div></th></tr>';
         $users = array();
         $groups = array();
         if (is_null($permissions)) {
@@ -86,7 +68,7 @@ EOT;
             $what = mod_Permissions::RuleWhat($rule);
             $subject_id = mod_Permissions::RuleWho($rule);
             $permission = mod_Permissions::RulePermission($rule);
-            $output .= '<tr><td>';
+            $output .= '<tr><td><label>';
             if ($what == mod_Permissions::perm_user) {
                 $users[] = $subject_id;
                 $prefix = 'u';
@@ -118,12 +100,10 @@ EOT;
             } else {
                 return false;
             }
-            $output .= '</td>'
+            $output .= '</label></td>'
                      . $this->PermissionLine($permission, $prefix, $subject_id)
                      . "</tr>\n";
         }
-        
-        $output .= $this->VerticalTableTextFix();
         
         $output .= '</table>';
         $userstr = implode(',', $users);

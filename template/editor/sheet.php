@@ -333,19 +333,19 @@ class tpl_Sheet implements tpl_ElementInterface
              . "<HTML>\n"
              . "<HEAD>\n"
              . "<TITLE>$title</TITLE>\n"
-             . '<LINK rel="stylesheet" type="text/css" href="/main.css">'
+             . '<LINK rel="stylesheet" type="text/css" href="template/editor/main.css">'
              . '<META http-equiv="Content-type" content="text/html; '
              . 'charset=utf-8">'
              . "\n</HEAD>\n"
              . "<BODY>\n"
-             . "<div class=pagina>\n"
-             . "<div class=paginakoplinks><div class=paginakopkop>\n"
+             . "<div class=page>\n"
+             . "<div class=pageheadingleft><div class=pageheadingheading>\n"
              . "<H1>&nbsp;</H1>\n"
              . "</div></div>\n"
-             . "<div class=paginakoprechts><div class=paginakopkop>\n"
+             . "<div class=pageheadingright><div class=pageheadingheading>\n"
              . "<h1>$title</h1>\n"
              . "</div></div>\n"
-             . "<div class=paginazelf>";
+             . "<div class=pagemain>";
     }
     
     private function SwitchToMenu()
@@ -365,9 +365,9 @@ class tpl_Sheet implements tpl_ElementInterface
         } else {
             $root_id = 1;
         }
-        $output = '<div class=menutitel>'
+        $output = '<div class=menutitle>'
                 . 'TOOLS'
-                . '</div><div class=menukastje>'
+                . '</div><div class=menubox>'
                 . '<a href="index.php?c=edit&amp;a=page&amp;id='
                 . urlencode($root_id) . '">'
                 . 'Terug naar index</a><br>'
@@ -378,8 +378,8 @@ class tpl_Sheet implements tpl_ElementInterface
                 . urlencode($element_id)
                 . '">Wijzigingen ongedaan maken</a></div>';
         if (!is_null($this->currentuser)) {
-            $output .= '<div class=menutitel>GEBRUIKER</div>'
-                     . '<div class=menukastje>Ingelogd als: ' 
+            $output .= '<div class=menutitle>GEBRUIKER</div>'
+                     . '<div class=menubox>Ingelogd als: ' 
                      . htmlspecialchars($this->currentuser->GetUsername())
                      . "<br>\n"
                      . '<a href="index.php?c=login&amp;a=logout">Uitloggen</a>'

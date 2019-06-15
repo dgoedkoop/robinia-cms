@@ -57,19 +57,19 @@ class ctrl_Edit
            . "<HTML>\n"
            . "<HEAD>\n"
            . "<TITLE>$title</TITLE>\n"
-           . '<LINK rel="stylesheet" type="text/css" href="/main.css">'
+           . '<LINK rel="stylesheet" type="text/css" href="template/editor/main.css">'
            . '<META http-equiv="Content-type" content="text/html; '
            . 'charset=utf-8">'
            . "\n</HEAD>\n"
            . "<BODY>\n"
-           . "<div class=pagina>\n"
-           . "<div class=paginakoplinks><div class=paginakopkop>\n"
+           . "<div class=page>\n"
+           . "<div class=pageheadingleft><div class=pageheadingheading>\n"
            . "<H1>&nbsp;</H1>\n"
            . "</div></div>\n"
-           . "<div class=paginakoprechts><div class=paginakopkop>\n"
+           . "<div class=pageheadingright><div class=pageheadingheading>\n"
            . "<h1>$title</h1>\n"
            . "</div></div>\n"
-           . "<div class=paginazelf>";
+           . "<div class=pagemain>";
     }
     private function PgEnd()
     {
@@ -168,7 +168,7 @@ class ctrl_Edit
             $after_element = $parameters['after_element'];
         }
         
-        $output = '<div class=invoer><fieldset><legend>Nieuw element</legend>'
+        $output = '<div class=inputarea><fieldset><legend>Nieuw element</legend>'
                 . '<form action="index.php" method="get">'
                 . '<input type=hidden name="c" value="edit">'
                 . '<input type=hidden name="a" value="addForm">'
@@ -247,7 +247,7 @@ class ctrl_Edit
             $enctype = 'application/x-www-form-urlencoded';
         }
         
-        $output = '<div class=invoer><fieldset><legend>' 
+        $output = '<div class=inputarea><fieldset><legend>' 
                 . $tpl_element->TypeName() . '</legend>'
                 . '<form action="index.php?c=edit&a=addNow" method="post" '
                 . 'enctype="' . $enctype . '">';
@@ -377,7 +377,7 @@ class ctrl_Edit
             $enctype = 'application/x-www-form-urlencoded';
         }
         
-        $output = '<div class=invoer>'
+        $output = '<div class=inputarea>'
                 . '<fieldset><legend>Eigenschappen van element</legend>'
                 . '<form action="index.php?c=edit&a=editSave" method="post" '
                 . 'enctype="' . $enctype . '">';
@@ -436,7 +436,7 @@ class ctrl_Edit
         $sheet->SetUserlist($this->db->LoadTypeAll('User'));
         $sheet->SetGrouplist($this->GetGrouplist());
 
-        $output = '<div class=invoer><fieldset><legend>Elementrechten</legend>'
+        $output = '<div class=inputarea><fieldset><legend>Elementrechten</legend>'
                 . '<form action="index.php?c=edit&a=permissionssave" method="post">'
                 . '<input type=hidden name="id" value="'
                 . htmlspecialchars($mod_element->GetID()) . '">'
