@@ -14,6 +14,7 @@ class tpl_Video extends mod_Video implements tpl_ElementInterface
     
     public function GetOutput()
     {
+        $options = mod_Options::instance();
         if (mod_ClientStorage::instance()->GetOption('GoogleCookies'))
         {
             $output = '<p class="imgself">';
@@ -32,9 +33,9 @@ class tpl_Video extends mod_Video implements tpl_ElementInterface
                 $video_id = '';
             }
             
-            if ($this->options->GetOption('img_lightbox')) {
+            if ($options->GetOption('img_lightbox')) {
                 $output .= '<a href="' . $this->url . '" rel="lightbox">'
-                        . '<img src="template/'.$this->options->GetOption('template').'/play.png" class="playbtn">'
+                        . '<img src="template/'.$options->GetOption('template').'/play.png" class="playbtn">'
                         . '<img src="http://img.youtube.com/vi/' . $video_id
                         . '/0.jpg" alttext="Video" style="width: 100.2%"'
                         . ' class="withborder">'
@@ -44,7 +45,7 @@ class tpl_Video extends mod_Video implements tpl_ElementInterface
                         . $width . '" height="' . $height. '" '
                         . 'src="http://www.youtube.com/embed/'
                         . $video_id . '?rel=0&origin='
-                        . $this->options->GetOption('basepath');
+                        . $options->GetOption('basepath');
                 if ($this->caption) {
                     $output .= '&showinfo=0';
                 }

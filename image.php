@@ -15,8 +15,7 @@ require('control/checklogin.php');
 require('control/autoload.php');
 
 function CheckRights($fname) {
-    global $options;
-    
+    $options = mod_Options::instance();
     $realpath = realpath($fname);
     $scriptpath = pathinfo(__FILE__, PATHINFO_DIRNAME);
     if (substr($realpath, 0, strlen($scriptpath)) != $scriptpath) {
@@ -33,7 +32,7 @@ function CheckRights($fname) {
                 $options->GetOption('db_username'),
                 $options->GetOption('db_password'));
 
-    $mod_db = new mod_Database($options);
+    $mod_db = new mod_Database();
     $mod_db->SetDb($db);
     $mod_db->SetRecursive(mod_Database::recursive_no);
 

@@ -3,18 +3,16 @@
 class ctrl_Login
 {
     private $db = null;
-    private $options;
     
-    public function __construct(mod_Options $options)
+    public function __construct()
     {
-        $this->options = $options;
-        $this->options->SetOption('template', 'editor');
+        mod_Options::instance()->SetOption('template', 'editor');
         require_once 'template/editor/sheet.php';
     }
 
     private function SetupDB()
     {
-        $this->db = new mod_Database($this->options);
+        $this->db = new mod_Database();
         if (!$this->db->Connect()) {
             die('Kon geen verbinding maken.');
         }

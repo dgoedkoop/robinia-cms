@@ -6,17 +6,15 @@ require_once 'model/clientstorage.php';
 class ctrl_Page
 {
     private $db;
-    private $options;
     
-    public function __construct(mod_Options $options)
+    public function __construct()
     {
-        $this->options = $options;
-        require_once 'template/'.$this->options->GetOption('template').'/sheet.php';
+        require_once 'template/'.mod_Options::instance()->GetOption('template').'/sheet.php';
     }
     
     private function SetupDB()
     {
-        $this->db = new mod_Database($this->options);
+        $this->db = new mod_Database();
         if (!$this->db->Connect()) {
             die('Kon geen verbinding maken.');
         }
@@ -81,26 +79,26 @@ class ctrl_Page
         $this->db->RegisterEvent('page', false, $this->currentuser, $element, 
             '403 Forbidden');
         
-        $world = new mod_Usergroup($this->options);
+        $world = new mod_Usergroup();
         $world->SetGID(0);
         $readonlypermissions = new mod_Permissions();
         $readonlypermissions->SetGroupPermission($world->GetGID(), 
             mod_Permissions::perm_view);
         
-        $page = new mod_Page($this->options);
+        $page = new mod_Page();
         $page->SetPermissions($readonlypermissions);
-        $pagedsc = new mod_TitleDescription($this->options);
+        $pagedsc = new mod_TitleDescription();
         $pagedsc->SetPermissions($readonlypermissions);
         $page->AddChild($pagedsc);
         $pagedsc->SetTitle('Access denied');
-        $pagetext = new mod_Paragraph($this->options);
+        $pagetext = new mod_Paragraph();
         $pagetext->SetPermissions($readonlypermissions);
         $page->AddChild($pagetext);
         $pagetext->SetText('Sorry, you are not allowed to see this page. '
             . ' You can go to the <a href="'
-            . $this->options->GetOption('basepath') . '">home page</a> and try '
+            . mod_Options::instance()->GetOption('basepath') . '">home page</a> and try '
             . 'to find what you are looking for there.');
-        $outpage = new tpl_Sheet($this->options);
+        $outpage = new tpl_Sheet();
         $outpage->SetModelTree($page);
         header('HTTP/1.0 403 Forbidden');
         echo $outpage->GetOutput();
@@ -114,19 +112,19 @@ class ctrl_Page
         $registered = $this->db->RegisterEvent('page', false,
             $this->currentuser, null, '404 Not Found: ' . $what);
         
-        $world = new mod_Usergroup($this->options);
+        $world = new mod_Usergroup();
         $world->SetGID(0);
         $readonlypermissions = new mod_Permissions();
         $readonlypermissions->SetGroupPermission($world->GetGID(), 
             mod_Permissions::perm_view);
         
-        $page = new mod_Page($this->options);
+        $page = new mod_Page();
         $page->SetPermissions($readonlypermissions);
-        $pagedsc = new mod_TitleDescription($this->options);
+        $pagedsc = new mod_TitleDescription();
         $pagedsc->SetPermissions($readonlypermissions);
         $page->AddChild($pagedsc);
         $pagedsc->SetTitle('Page not found');
-        $pagetext = new mod_Paragraph($this->options);
+        $pagetext = new mod_Paragraph();
         $pagetext->SetPermissions($readonlypermissions);
         $page->AddChild($pagetext);
         if ($registered) {
@@ -134,15 +132,15 @@ class ctrl_Page
                 . 'not be found. Of course, this should be fixed as soon as '
                 . 'possible, so the webmaster has already been notified. '
                 . 'Meanwhile, you can go to the <a href="'
-                . $this->options->GetOption('basepath') . '">home page</a> and '
+                . mod_Options::instance()->GetOption('basepath') . '">home page</a> and '
                 . 'try to find what you are looking for there.');
         } else {
             $pagetext->SetText('Sorry, but the page you are looking for could '
                 . 'not be found. However, you can go to the <a href="'
-                . $this->options->GetOption('basepath') . '">home page</a> and '
+                . mod_Options::instance()->GetOption('basepath') . '">home page</a> and '
                 . 'try to find what you are looking for there.');
         }
-        $outpage = new tpl_Sheet($this->options);
+        $outpage = new tpl_Sheet();
         $outpage->SetModelTree($page);
         header('HTTP/1.0 404 Not Found');
         echo $outpage->GetOutput();
@@ -174,7 +172,7 @@ class ctrl_Page
         $this->db->SetRecursive(mod_Database::recursive_yes);
         $pageroot = $this->db->LoadElement($element_id);
         $menuroot = $this->LoadMenuTree($element_id);
-        $outpage = new tpl_Sheet($this->options);
+        $outpage = new tpl_Sheet();
         $outpage->SetModelTree($pageroot);
         if (!is_null($menuroot)) {
             $outpage->SetMenuTree($menuroot);

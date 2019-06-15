@@ -21,12 +21,6 @@ abstract class mod_Element implements mod_iElement {
     protected $fullyloaded = 'y';
     protected $permissions = null;
     protected $currentuser = null;
-    protected $options = null;
-    
-    public function __construct(mod_Options $options)
-    {
-        $this->options = $options;
-    }
     public function SetTimeCreated($time)
     {
         $this->time_created = $time;
@@ -99,11 +93,11 @@ abstract class mod_Element implements mod_iElement {
     {
     $this->children = $children;
     }
-    public function FindPossibleChildClasses($options)
+    public function FindPossibleChildClasses()
     {
         $result = array();
         $childlimit = $this->LimitChildren();
-        foreach ($options->GetOption('classlist') as $classbase) {
+        foreach (mod_Options::instance()->GetOption('classlist') as $classbase) {
             $classname = 'mod_' . $classbase;
             /*
              * First check if we allow $classname as a child ourselves.
@@ -124,7 +118,7 @@ abstract class mod_Element implements mod_iElement {
              * Then check if $classname allows us as its parent.
              */
             if ($childok) {
-                $child = new $classname($this->options);
+                $child = new $classname();
                 $parentlimit = $child->LimitParent();
                 if ($parentlimit === false) {
                     $parentok = true;
@@ -148,7 +142,7 @@ abstract class mod_Element implements mod_iElement {
     public function CanHaveAsChild(mod_Element $child)
     {
         $type_ok = false;
-        foreach($this->FindPossibleChildClasses($this->options) as $classbase) {
+        foreach($this->FindPossibleChildClasses() as $classbase) {
             $classname = 'mod_' . $classbase;
             if ((get_class($child) == $classname) ||
                 is_subclass_of($child, $classname)) {

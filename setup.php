@@ -1,8 +1,8 @@
 <?php
 
-require 'model/database.php';
 require 'control/options.php';
 require 'control/autoload.php';
+require 'model/database.php';
 require 'model/passwords.php';
 
 function SavePages(mod_Database $db, mod_Element $mod_element, $parent_id = 0, $after = 0) {
@@ -25,7 +25,7 @@ function SavePages(mod_Database $db, mod_Element $mod_element, $parent_id = 0, $
 /*
  * Create the database
  */
-$x = new mod_Database($options);
+$x = new mod_Database();
 if ($x->Connect()) {
     if ($x->CreateTables()) {
     echo "Setup succeeded creating tables.\n";
@@ -45,28 +45,28 @@ if ($x->Connect()) {
 $x->SetPermitSetup();
 
 // Create these first, so we can use them in permissions.
-$admin = new mod_User($options); 
+$admin = new mod_User(); 
 $admin->SetUID(1);
 $admin->SetAdmin(true);
 $admin->SetUsername('admin');
 mod_Passwords::SetPassword($admin, 'admin');
-$world = new mod_Usergroup($options);
+$world = new mod_Usergroup();
 $world->SetGID(0);
 $world->SetGroupname('Everyone');
-$loggedin = new mod_Usergroup($options);
+$loggedin = new mod_Usergroup();
 $loggedin->SetGID(1);
 $loggedin->SetGroupname('Not logged in');
-$notloggedin = new mod_Usergroup($options);
+$notloggedin = new mod_Usergroup();
 $notloggedin->SetGID(2);
 $notloggedin->SetGroupname('Logged in');
 
-$root = new mod_Folder($options);
+$root = new mod_Folder();
 $rootpermissions = new mod_Permissions();
 $rootpermissions->SetUserPermission($admin->GetUID(),
     mod_Permissions::perm_default);
 $root->SetPermissions($rootpermissions);
 
-$rootdsc = new mod_TitleDescription($options); $root->AddChild($rootdsc);
+$rootdsc = new mod_TitleDescription(); $root->AddChild($rootdsc);
 $rootdsc->SetPermissions($rootpermissions);
 $rootdsc->SetTitle('Root');
 $rootdsc->SetDescription('This is the CMS root folder. Please do not remove '
@@ -80,9 +80,9 @@ $readonlypermissions = new mod_Permissions();
 $readonlypermissions->SetGroupPermission($world->GetGID(), 
     mod_Permissions::perm_view);
 
-$uf = new mod_Folder($options); $root->AddChild($uf);
+$uf = new mod_Folder(); $root->AddChild($uf);
 $uf->SetPermissions($readonlypermissions);
-$ufdsc = new mod_TitleDescription($options); $uf->AddChild($ufdsc);
+$ufdsc = new mod_TitleDescription(); $uf->AddChild($ufdsc);
 $ufdsc->SetPermissions($readonlypermissions);
 $ufdsc->SetTitle('System users and groups');
 $ufdsc->SetDescription('This folder contains the admin user and system groups. '
@@ -98,17 +98,17 @@ $loggedin->SetPermissions($readonlypermissions);
 $uf->AddChild($notloggedin);
 $notloggedin->SetPermissions($readonlypermissions);
 
-$loginpage = new mod_Page($options); $root->AddChild($loginpage);
+$loginpage = new mod_Page(); $root->AddChild($loginpage);
 $loginpage->SetPermissions($loginpagepermissions);
 
-$loginpagedsc = new mod_TitleDescription($options);
+$loginpagedsc = new mod_TitleDescription();
 $loginpage->AddChild($loginpagedsc);
 $loginpagedsc->SetPermissions($loginpagepermissions);
 $loginpagedsc->SetTitle('Login');
 $loginpagedsc->SetDescription('This page can be used for logging in.');
 $loginpagedsc->SetLinkname('login');
 
-$loginparagraph = new mod_Paragraph($options);
+$loginparagraph = new mod_Paragraph();
 $loginpage->AddChild($loginparagraph);
 $loginparagraph->SetPermissions($loginpagepermissions);
 $loginparagraph->SetText(<<<EOT

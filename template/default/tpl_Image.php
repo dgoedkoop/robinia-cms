@@ -22,7 +22,7 @@ class tpl_Image extends mod_Image implements tpl_ElementInterface
             if ($this->displaywidth && $this->displayheight) $param .= "&amp;";
             if ($this->displayheight) $param .= "h=".$this->displayheight;
             $output .= '<a href="'.$this->filename.'" rel="lightbox"';
-            if ($this->options->GetOption('img_lightbox')) {
+            if (mod_Options::instance()->GetOption('img_lightbox')) {
                 $output .= ' title="' . htmlspecialchars($this->caption) . '"';
             }
             $output .= '>'

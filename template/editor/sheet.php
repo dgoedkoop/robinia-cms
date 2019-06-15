@@ -1,19 +1,15 @@
 <?php
 
-require_once 'model/options.php';
-
 class tpl_Sheet implements tpl_ElementInterface
 {
     private $modeltree = null;
     private $roots = array();
     private $clipboardelement = null;
-    private $options;
     private $grouplistcallback;
     private $currentuser = null;
     
-    public function __construct($options, $grouplistcallback = false)
+    public function __construct($grouplistcallback = false)
     {
-        $this->options = $options;
         $this->grouplistcallback = $grouplistcallback;
     }
     
@@ -52,7 +48,7 @@ class tpl_Sheet implements tpl_ElementInterface
             return false;
         }
         $tpl_class = 'tpl_' . substr($mod_class, 4);
-        $i = new $tpl_class($this->options);
+        $i = new $tpl_class();
         $i->SetID($mod_element->GetID());
         $i->SetStatus($mod_element->GetStatus());
         $i->SetFullyLoaded($mod_element->GetFullyLoaded());
@@ -99,7 +95,7 @@ class tpl_Sheet implements tpl_ElementInterface
         /*
          * If we can add a sub-element, offer an option to insert a new one.
          */
-        if ($parenttree[0]->FindPossibleChildClasses($this->options) 
+        if ($parenttree[0]->FindPossibleChildClasses() 
             === array()) {
             $output = '';
         } else {

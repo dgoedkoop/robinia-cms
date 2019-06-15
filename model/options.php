@@ -1,6 +1,8 @@
 <?php
 
-class mod_Options {
+require_once 'singleton.php';
+
+class mod_Options extends Singleton {
     private $options = array();
     
     public function SetOption($name, $value)

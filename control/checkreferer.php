@@ -2,10 +2,10 @@
 
 class ctrl_CheckReferer
 {
-    function Check($options)
+    function Check()
     {
         return (strpos($_SERVER["HTTP_REFERER"],
-            $options->GetOption('basepath')) === 0);
+            mod_Options::instance()->GetOption('basepath')) === 0);
     }
 }
 ?>

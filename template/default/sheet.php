@@ -4,12 +4,6 @@ class tpl_Sheet implements tpl_ElementInterface
 {
     private $modeltree = null;
     private $menutree = null;
-    private $options;
-    
-    public function __construct(mod_Options $options)
-    {
-        $this->options = $options;
-    }
     
     public function SetModelTree(mod_Element $mod_element)
     {
@@ -37,7 +31,7 @@ class tpl_Sheet implements tpl_ElementInterface
             return false;
         }
         $tpl_class = 'tpl_' . substr($mod_class, 4);
-        $i = new $tpl_class($this->options);
+        $i = new $tpl_class();
         $i->SetID($mod_element->GetID());
         $i->SetStatus($mod_element->GetStatus());
         $i->SetFullyLoaded($mod_element->GetFullyLoaded());
@@ -109,6 +103,7 @@ EOT;
     
     private function PageStart($title, $description = '')
     {
+        $options = mod_Options::instance();
         header('Content-Type: text/html; charset=utf-8');
         $output = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" '
                 . "\"http://www.w3.org/TR/html4/strict.dtd\">\n"
@@ -116,15 +111,15 @@ EOT;
                 . "<HEAD>\n"
                 . "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">"
                 . "<TITLE>" . htmlspecialchars($title);
-        if ($this->options->GetOption('site_title')) {
-            $output .= ' - ' . $this->options->GetOption('site_title');
+        if ($options->GetOption('site_title')) {
+            $output .= ' - ' . $options->GetOption('site_title');
         }
         $output .= "</TITLE>\n";
         if ($description != '') {
             $output .= '<META NAME="description" CONTENT="'
                      . htmlspecialchars($description) . '">';
         }
-        $output .= '<LINK rel="stylesheet" type="text/css" href="template/'.$this->options->GetOption('template').'/main.css">'
+        $output .= '<LINK rel="stylesheet" type="text/css" href="template/'.$options->GetOption('template').'/main.css">'
                  . $this->jQuery_css()
                  . '<META http-equiv="Content-type" content="text/html; '
                  . 'charset=utf-8">'
@@ -134,7 +129,7 @@ EOT;
                  . "<div class=page>\n"
                  . "<div class=pageheadingleft>"
                  . '<a href="index.html">'
-                 . '<img src="template/'.$this->options->GetOption('template').'/logo.png" alt="logo" class="link"></a>'
+                 . '<img src="template/'.$options->GetOption('template').'/logo.png" alt="logo" class="link"></a>'
                  . "</div>\n"
                  . "<div class=pageright>"
                  . "<div class=pageheadingheading>\n"

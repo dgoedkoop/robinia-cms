@@ -7,7 +7,6 @@ class ctrl_Edit
 {
     const file_upload_max_size = 2097152;
     private $db = null;
-    private $options;
     private $grouplist = false;
     private $checklogin;
     private $currentuser = null;
@@ -15,10 +14,9 @@ class ctrl_Edit
     private $clipboardcut = true;
     private $parenttree = array();
     
-    public function __construct(mod_Options $options)
+    public function __construct()
     {
-        $this->options = $options;
-        $this->options->SetOption('template', 'editor');
+        mod_Options::instance()->SetOption('template', 'editor');
         require_once 'template/editor/sheet.php';
     }
     
@@ -38,7 +36,7 @@ class ctrl_Edit
     
     private function SetupDB()
     {
-        $this->db = new mod_Database($this->options);
+        $this->db = new mod_Database();
         if (!$this->db->Connect()) {
             die('Kon geen verbinding maken.');
         }
@@ -189,7 +187,7 @@ class ctrl_Edit
         $this->db->SetMode(mod_Database::mode_edit);
         
         $mod_parent = $this->db->LoadElement($parent_id);
-        $childclasses = $mod_parent->FindPossibleChildClasses($this->options);
+        $childclasses = $mod_parent->FindPossibleChildClasses();
         foreach ($childclasses as $classbase) {
             $classname = 'tpl_' . $classbase;
             $name = call_user_func(array($classname, 'GetName'));
@@ -225,7 +223,7 @@ class ctrl_Edit
             $after_element = $parameters['after_element'];
         }
         $classname = "";
-        foreach ($this->options->GetOption('classlist') as $classbase) {
+        foreach (mod_Options::instance()->GetOption('classlist') as $classbase) {
             $iname = call_user_func(array('tpl_' . $classbase, 'GetName'));
             if ($iname == $name) {
                 $classname = 'tpl_' . $classbase;
@@ -234,7 +232,7 @@ class ctrl_Edit
         if ($classname == '') {
             throw new InvalidArgumentException('Invalid type');
         }
-        $tpl_element = new $classname($this->options);
+        $tpl_element = new $classname();
         $this->SetupDB();
         $tpl_element->SetCurrentUser($this->db->GetCurrentUser());
         if (method_exists($tpl_element, 'SetGrouplist')) {
@@ -309,7 +307,7 @@ class ctrl_Edit
         $this->db->SetRecursive(mod_Database::recursive_no);
         $this->db->SetMode(mod_Database::mode_edit);
         $mod_parent = $this->db->LoadElement($parent_id);
-        $childclasses = $mod_parent->FindPossibleChildClasses($this->options);
+        $childclasses = $mod_parent->FindPossibleChildClasses();
         $classname = "";
         foreach ($childclasses as $classbase) {
             $tmp_classname = 'tpl_' . $classbase;
@@ -324,7 +322,7 @@ class ctrl_Edit
         /*
          * Create the new element
          */
-        $tpl_element = new $classname($this->options);
+        $tpl_element = new $classname();
         if (method_exists($tpl_element, 'SetGrouplist')) {
             $tpl_element->SetGrouplist($this->GetGrouplist());
         }
@@ -368,8 +366,7 @@ class ctrl_Edit
         $this->db->SetRecursive(mod_Database::recursive_no);
         $this->db->SetMode(mod_Database::mode_edit);
         $mod_element = $this->db->LoadElement($element_id);
-        $sheet = new tpl_Sheet($this->options,
-            array($this, 'GetGrouplist'));
+        $sheet = new tpl_Sheet(array($this, 'GetGrouplist'));
         $tpl_element = $sheet->ConvertModelToTpl($mod_element);
         
         $has_upload = (method_exists($tpl_element, 'GetFormHasFileUpload') &&
@@ -420,8 +417,7 @@ class ctrl_Edit
         $this->db->SetRecursive(mod_Database::recursive_no);
         $this->db->SetMode(mod_Database::mode_edit);
         $mod_element = $this->db->LoadElement($element_id);
-        $sheet = new tpl_Sheet($this->options, 
-            array($this, 'GetGrouplist'));
+        $sheet = new tpl_Sheet(array($this, 'GetGrouplist'));
         $tpl_element = $sheet->ConvertModelToTpl($mod_element);
         $tpl_element->SetFromForm($_POST);
         $this->db->UpdateElement($tpl_element);
@@ -641,8 +637,7 @@ class ctrl_Edit
         $this->db->SetRecursive(mod_Database::recursive_yes);
         $sheet = $this->db->LoadElement($element_id);
         if ($this->db->IsValidElement($sheet)) {
-            $outpage = new tpl_Sheet($this->options, 
-                array($this, 'GetGrouplist'));
+            $outpage = new tpl_Sheet(array($this, 'GetGrouplist'));
             if (!is_null($this->db->GetCurrentUser())) {
                 $outpage->SetCurrentUser($this->db->GetCurrentUser());
             }

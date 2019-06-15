@@ -1,8 +1,9 @@
 <?php
 
-require('model/database.php');
 require('control/options.php');
+require('model/database.php');
 
+$options = mod_Options::instance();
 $db = new PDO('mysql:host=' . $options->GetOption('db_hostname')
             . ';dbname=' . $options->GetOption('db_database')
             . ';charset=utf8',

@@ -4,7 +4,7 @@ class tpl_Image extends mod_Image implements tpl_ElementInterface
 {
     private function DestFilename($origname)
     {
-        $uploaddir = $this->options->GetOption('img_upload_dir');
+        $uploaddir = mod_Options::instance()->GetOption('img_upload_dir');
         if ($origname == '') {
             return false;
         } elseif (!is_dir($uploaddir)) {
@@ -120,7 +120,7 @@ class tpl_Image extends mod_Image implements tpl_ElementInterface
             $destfilename = $this->DestFilename($_FILES['imgupload']['name']);
             if (!($destfilename === false) && move_uploaded_file(
                 $_FILES['imgupload']['tmp_name'], $destfilename)) {
-                $this->SetFilename($this->options->GetOption(img_upload_webpath)
+                $this->SetFilename(mod_Options::instance()->GetOption(img_upload_webpath)
                     . basename($destfilename));
                 $size = $this->GetImageSize($destfilename);
                 if (isset($size['width'])) {

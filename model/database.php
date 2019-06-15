@@ -1,7 +1,5 @@
 <?php
 
-require_once 'options.php';
-
 /* The database for this application looks roughly as following:
  * ELEMENT -> id, parent_id, order_index(int), no_of_children, creation_time, active(enum), type
  *  possible values for 'active':
@@ -40,7 +38,6 @@ class mod_Database
     const mode_edit = 3;
     
     private $db;
-    private $options;
     private $mode = self::mode_view;
     private $recursive = self::recursive_no;
     private $commit_affected_users;
@@ -48,11 +45,6 @@ class mod_Database
     private $permission_overrides = 0;
     private $user_cache = array();
     private $group_cache = array();
-    
-    public function __construct(mod_Options $options)
-    {
-        $this->options = $options;
-    }
     
     public function ResetPermit()
     {
@@ -117,12 +109,13 @@ class mod_Database
     public function Connect()
     {
         try {
+            $options = mod_Options::instance();
             $this->db = 
-                new PDO('mysql:host=' . $this->options->GetOption('db_hostname')
-                      . ';dbname=' . $this->options->GetOption('db_database')
+                new PDO('mysql:host=' . $options->GetOption('db_hostname')
+                      . ';dbname=' . $options->GetOption('db_database')
                       . ';charset=utf8',
-                        $this->options->GetOption('db_username'),
-                        $this->options->GetOption('db_password'));
+                        $options->GetOption('db_username'),
+                        $options->GetOption('db_password'));
             $this->db->query("SET NAMES 'utf8'");
         } catch (PDOException $e) {
             trigger_error($e->getMessage());
@@ -159,14 +152,14 @@ class mod_Database
     }
     private function TypeNameToClassName($typename)
     {
-        foreach ($this->options->GetOption('classlist') as $classbase) {
+        foreach (mod_Options::instance()->GetOption('classlist') as $classbase) {
             $classname = 'mod_' . $classbase;
             /* PHP bug: PHP at some web hosting providers acts stupidly when
              * combining is_callable or call_user_func with __autoload. */
             //$callable = array($classname, 'GetName');
             //if (is_callable($callable)) {
             //    if (call_user_func($callable) == $typename) {
-            $x = new $classname($this->options);
+            $x = new $classname();
             if (is_callable(array($x, 'GetName'))) {
                 if ($x->GetName() == $typename) {
                     return $classname;
@@ -184,7 +177,7 @@ class mod_Database
         $oldmode = $this->GetMode();
                 
         try {
-            $tbl_prefix = $this->options->GetOption('tbl_prefix');
+            $tbl_prefix = mod_Options::instance()->GetOption('tbl_prefix');
             $tbl_name = mod_User::GetDbTableName();
         
             if ($mode == self::match_id) {
@@ -229,7 +222,7 @@ class mod_Database
         $oldmode = $this->GetMode();
         
         try {
-            $tbl_prefix = $this->options->GetOption('tbl_prefix');
+            $tbl_prefix = mod_Options::instance()->GetOption('tbl_prefix');
             $tbl_name = mod_Usergroup::GetDbTableName();
         
             if ($mode == self::match_id) {
@@ -267,7 +260,7 @@ class mod_Database
     }
     public function LoadLink($linkname)
     {
-        $tbl_prefix = $this->options->GetOption('tbl_prefix');
+        $tbl_prefix = mod_Options::instance()->GetOption('tbl_prefix');
         
         try {
             $tbl_name = mod_TitleDescription::GetDbTableName();
@@ -291,7 +284,7 @@ class mod_Database
     }
     public function LoadTypeAll($classbase)
     {
-        $tbl_prefix = $this->options->GetOption('tbl_prefix');
+        $tbl_prefix = mod_Options::instance()->GetOption('tbl_prefix');
         
         try {
             $classname = 'mod_' . $classbase;
@@ -327,7 +320,7 @@ class mod_Database
     }
     private function LoadElementData($element_id, $typename)
     {
-        $tbl_prefix = $this->options->GetOption('tbl_prefix');
+        $tbl_prefix = mod_Options::instance()->GetOption('tbl_prefix');
         $classname = $this->TypeNameToClassName($typename);
         if ($classname === false) {
             return false;
@@ -340,7 +333,7 @@ class mod_Database
         if (!is_subclass_of($classname, 'mod_Element')) {
             return false;
         }
-        $mod_element = new $classname($this->options);
+        $mod_element = new $classname();
         $tbl_name = $mod_element->GetDbTableName();
         if (!($tbl_name === false)) {
             $tbl_columns = '';
@@ -365,7 +358,7 @@ class mod_Database
     private function LoadElementChildren(mod_Element $mod_element, 
         $no_of_children, $level)
     {
-        $tbl_prefix = $this->options->GetOption('tbl_prefix');
+        $tbl_prefix = mod_Options::instance()->GetOption('tbl_prefix');
 
         /*
          * Do a full recursion if we haven't reached the max. depth
@@ -446,7 +439,7 @@ class mod_Database
     }
     private function LoadElementPermissions($element_id)
     {
-        $tbl_prefix = $this->options->GetOption('tbl_prefix');
+        $tbl_prefix = mod_Options::instance()->GetOption('tbl_prefix');
             
         $permissions = new mod_Permissions();
         $sql = "SELECT permissiontype, subject, permission "
@@ -475,7 +468,7 @@ class mod_Database
      */
     public function LoadElement($element_id, $level = 0)
     {
-        $tbl_prefix = $this->options->GetOption('tbl_prefix');
+        $tbl_prefix = mod_Options::instance()->GetOption('tbl_prefix');
 
         try {
             if ($this->mode == self::mode_edit) {
@@ -520,7 +513,7 @@ class mod_Database
                      * process this as a simple container.
                      */
                     if ($mod_element === false) {
-                        $mod_element = new mod_Container($this->options);
+                        $mod_element = new mod_Container();
                     }
                     $mod_element->SetID($element_id);
                     $mod_element->SetStatus($row['active']);
@@ -541,8 +534,7 @@ class mod_Database
                         $no_of_children, $level);
                 } else {
                     // View permission denied
-                    $mod_element = new mod_ElementPermissionDenied(
-                        $this->options);
+                    $mod_element = new mod_ElementPermissionDenied();
                     $mod_element->SetID($element_id);
                     $mod_element->SetPermissions($permissions);
                     return $mod_element;
@@ -562,7 +554,7 @@ class mod_Database
      */
     public function ParentID($element)
     {
-        $tbl_prefix = $this->options->GetOption('tbl_prefix');
+        $tbl_prefix = mod_Options::instance()->GetOption('tbl_prefix');
         
         if ($element instanceof mod_Element) {
             $element_id = $element->GetID();
@@ -594,7 +586,7 @@ class mod_Database
      */
     private function UpdateGroupMemberships($uid, $groups)
     {
-        $tbl_prefix = $this->options->GetOption('tbl_prefix');
+        $tbl_prefix = mod_Options::instance()->GetOption('tbl_prefix');
 
         $sql_d = "DELETE FROM {$tbl_prefix}groupmembership WHERE uid = :uid;";
         $sql_i = "INSERT INTO {$tbl_prefix}groupmembership SET "
@@ -619,7 +611,7 @@ class mod_Database
      */
     private function UpdateMTimes(mod_Element $mod_element)
     {
-        $tbl_prefix = $this->options->GetOption('tbl_prefix');
+        $tbl_prefix = mod_Options::instance()->GetOption('tbl_prefix');
         
         $update_sql = "UPDATE {$tbl_prefix}element "
              . "SET last_modified = NOW() WHERE id = :id";
@@ -639,7 +631,7 @@ class mod_Database
      */
     private function RollbackElement(mod_Element $mod_element)
     {
-        $tbl_prefix = $this->options->GetOption('tbl_prefix');
+        $tbl_prefix = mod_Options::instance()->GetOption('tbl_prefix');
        
         if (!$mod_element->GetPermissions()->HasPermission($this->currentuser,
             mod_Permissions::perm_edit) && 
@@ -684,7 +676,7 @@ class mod_Database
      */
     private function CommitElement(mod_Element $mod_element)
     {
-        $tbl_prefix = $this->options->GetOption('tbl_prefix');
+        $tbl_prefix = mod_Options::instance()->GetOption('tbl_prefix');
 
         /*
          * If we don't need to do anything, don't do anything. Especially, do
@@ -764,7 +756,7 @@ class mod_Database
      */
     public function Rollback(mod_Element $mod_element)
     {
-        $tbl_prefix = $this->options->GetOption('tbl_prefix');
+        $tbl_prefix = mod_Options::instance()->GetOption('tbl_prefix');
 
         if ($this->mode != self::mode_edit) {
             return false;
@@ -865,7 +857,7 @@ class mod_Database
     private function CreateElement(mod_Element $mod_element,
         $parent_element = null, $order_index = 0)
     {
-        $tbl_prefix = $this->options->GetOption('tbl_prefix');
+        $tbl_prefix = mod_Options::instance()->GetOption('tbl_prefix');
         
         if (!$this->GetPermissionOverride(self::perm_over_store)) {
             if (!$this->IsValidElement($parent_element)) {
@@ -919,7 +911,7 @@ class mod_Database
     private function DeactivateElement(mod_Element $mod_element, 
         mod_Element $parent_element = null)
     {
-        $tbl_prefix = $this->options->GetOption('tbl_prefix');
+        $tbl_prefix = mod_Options::instance()->GetOption('tbl_prefix');
         try {
             if (!$this->GetPermissionOverride(self::perm_over_deactivate)) {
                 if (!$mod_element->GetPermissions()->HasPermission(
@@ -1005,7 +997,7 @@ class mod_Database
      * 'order_index' items.
      */
     private function GetElementPosition(mod_Element $mod_element) {
-        $tbl_prefix = $this->options->GetOption('tbl_prefix');
+        $tbl_prefix = mod_Options::instance()->GetOption('tbl_prefix');
         
         $sql = "SELECT parent_id, order_index FROM {$tbl_prefix}element "
              . "WHERE id = :element_id;";
@@ -1030,7 +1022,7 @@ class mod_Database
         if ($after_element == 0) {
             $order_index = 0;
         } else {
-            $tbl_prefix = $this->options->GetOption('tbl_prefix');
+            $tbl_prefix = mod_Options::instance()->GetOption('tbl_prefix');
             $sql = "SELECT parent_id, order_index FROM {$tbl_prefix}element "
                  . "WHERE id = :element_id;";
             $statement = $this->db->prepare($sql);
@@ -1057,7 +1049,7 @@ class mod_Database
     private function StoreElement(mod_Element $mod_element, $parent_id = 0,
         $order_index = 0)
     {
-        $tbl_prefix = $this->options->GetOption('tbl_prefix');
+        $tbl_prefix = mod_Options::instance()->GetOption('tbl_prefix');
         $tbl_name = $mod_element->GetDbTableName();
 
         $oldrecursive = $this->GetRecursive();
@@ -1171,7 +1163,7 @@ class mod_Database
             return false;
         }
 
-        $tbl_prefix = $this->options->GetOption('tbl_prefix');
+        $tbl_prefix = mod_Options::instance()->GetOption('tbl_prefix');
         $tbl_name = $mod_element->GetDbTableName();
         $sql = "UPDATE {$tbl_prefix}{$tbl_name} "
              . "SET password = :password WHERE element_id = :id";
@@ -1194,7 +1186,7 @@ class mod_Database
                                    $after_element = 0)
     {
         try {
-            $tbl_prefix = $this->options->GetOption('tbl_prefix');
+            $tbl_prefix = mod_Options::instance()->GetOption('tbl_prefix');
             if (!$mod_element->GetPermissions()->HasPermission($this->currentuser,
                 mod_Permissions::perm_edit)) {
                 return false;
@@ -1284,7 +1276,7 @@ class mod_Database
         }
 
         try {
-            $tbl_prefix = $this->options->GetOption('tbl_prefix');
+            $tbl_prefix = mod_Options::instance()->GetOption('tbl_prefix');
             $delete_sql = "DELETE FROM {$tbl_prefix}acl "
                         . "WHERE element_id = :id;";
             $insert_sql = "INSERT INTO {$tbl_prefix}acl "
@@ -1410,7 +1402,7 @@ class mod_Database
 
     public function RegisterEvent($action, $success, $user, $object, $info) {
     try {
-            $tbl_prefix = $this->options->GetOption('tbl_prefix');
+            $tbl_prefix = mod_Options::instance()->GetOption('tbl_prefix');
             if ($success) {
                 $success_value = 'y';
             } else {
@@ -1452,7 +1444,7 @@ class mod_Database
      */
     public function CreateTableForClass($classname)
     {
-        $tbl_prefix = $this->options->GetOption('tbl_prefix');
+        $tbl_prefix = mod_Options::instance()->GetOption('tbl_prefix');
 
         $callable_name = array($classname, 'GetDbTableName');
         $callable_definition = array($classname, 'GetDbTableDefinition');
@@ -1486,7 +1478,7 @@ class mod_Database
     }
     public function CreateTables()
     {
-        $tbl_prefix = $this->options->GetOption('tbl_prefix');
+        $tbl_prefix = mod_Options::instance()->GetOption('tbl_prefix');
         try {
             $this->db->query("DROP TABLE IF EXISTS {$tbl_prefix}element, "
                            . "{$tbl_prefix}groupmembership, "
@@ -1530,7 +1522,7 @@ class mod_Database
                            . ") NOT NULL, "
                            . "KEY(uid), key(time)) CHARACTER SET utf8;");
             
-            foreach ($this->options->GetOption('classlist') as $classbase) {
+            foreach (mod_Options::instance()->GetOption('classlist') as $classbase) {
                 $classname = 'mod_' . $classbase;
                 $this->CreateTableForClass($classname);
             }

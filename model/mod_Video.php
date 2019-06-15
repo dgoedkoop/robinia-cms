@@ -23,14 +23,14 @@ class mod_Video extends mod_Element implements mod_ImageInterface {
         $this->caption = $caption;
     }
     public function GetWidth() {
-        if ($this->options->GetOption('img_lightbox')) {
+        if (mod_Options::instance()->GetOption('img_lightbox')) {
             return self::video_youtube_preview_width;
         } else {
             return self::video_youtube_width;
         }
     }
     public function GetHeight() {
-        if ($this->options->GetOption('img_lightbox')) {
+        if (mod_Options::instance()->GetOption('img_lightbox')) {
             return self::video_youtube_preview_height;
         } else {
             return self::video_youtube_height;

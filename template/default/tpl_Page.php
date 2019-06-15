@@ -6,7 +6,7 @@ class tpl_Page extends mod_Page implements tpl_ElementInterface
     {
         $output = "";
         if ($this->GetFullyLoaded()) {
-            $cookiebox = new tpl_CookieBox($this->options);
+            $cookiebox = new tpl_CookieBox();
             $output .= $cookiebox->GetOutput();
             foreach ($this->children as $child_element) {
                 $output .= $child_element->GetOutput();

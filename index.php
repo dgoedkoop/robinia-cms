@@ -57,8 +57,7 @@ class Main
     {
         $ctrlname = 'ctrl_' . $this->controllername;
         if (class_exists($ctrlname)) {
-            global $options;
-            $this->controller = new $ctrlname($options);
+            $this->controller = new $ctrlname();
         } else {
             throw new InvalidArgumentException('Invalid controller: '
                 . $this->controllername);
