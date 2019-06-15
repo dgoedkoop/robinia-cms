@@ -21,7 +21,8 @@ Installation
 To install Robinia CMS, please use the following steps:
 
 1. Set up a web host, copy all files, create a database
-2. Fill out the necessary settings in the file `control/options.php`
+2. Copy the file `control/options.template.php` to `control/options.php`
+   and set the necessary settings 
 3. Set the correct web root for mod_rewrite in `.htaccess`
 4. Point your web browser to `<webroot>/setup.php` to set up the database
 5. After a succesful setup, delete the file `setup.php`. This is important,
