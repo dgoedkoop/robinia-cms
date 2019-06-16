@@ -90,14 +90,12 @@ class ctrl_Page
         $pagedsc = new mod_TitleDescription();
         $pagedsc->SetPermissions($readonlypermissions);
         $page->AddChild($pagedsc);
-        $pagedsc->SetTitle('Access denied');
+        $pagedsc->SetTitle(tr('error403'));
         $pagetext = new mod_Paragraph();
         $pagetext->SetPermissions($readonlypermissions);
         $page->AddChild($pagetext);
-        $pagetext->SetText('Sorry, you are not allowed to see this page. '
-            . ' You can go to the <a href="'
-            . mod_Options::instance()->GetOption('basepath') . '">home page</a> and try '
-            . 'to find what you are looking for there.');
+        $pagetext->SetText(tr('error403text') . ' ' .
+            sprintf(tr('errorreturnhome'), mod_Options::instance()->GetOption('basepath')));
         $outpage = new tpl_Sheet();
         $outpage->SetModelTree($page);
         header('HTTP/1.0 403 Forbidden');
@@ -123,22 +121,16 @@ class ctrl_Page
         $pagedsc = new mod_TitleDescription();
         $pagedsc->SetPermissions($readonlypermissions);
         $page->AddChild($pagedsc);
-        $pagedsc->SetTitle('Page not found');
+        $pagedsc->SetTitle(tr('error404'));
         $pagetext = new mod_Paragraph();
         $pagetext->SetPermissions($readonlypermissions);
         $page->AddChild($pagetext);
         if ($registered) {
-            $pagetext->SetText('Sorry, but the page you are looking for could '
-                . 'not be found. Of course, this should be fixed as soon as '
-                . 'possible, so the webmaster has already been notified. '
-                . 'Meanwhile, you can go to the <a href="'
-                . mod_Options::instance()->GetOption('basepath') . '">home page</a> and '
-                . 'try to find what you are looking for there.');
+            $pagetext->SetText(tr('error404text') . ' ' . tr('errorloggedtext') . ' ' . 
+                sprintf(tr('errorreturnhome'), mod_Options::instance()->GetOption('basepath')));
         } else {
-            $pagetext->SetText('Sorry, but the page you are looking for could '
-                . 'not be found. However, you can go to the <a href="'
-                . mod_Options::instance()->GetOption('basepath') . '">home page</a> and '
-                . 'try to find what you are looking for there.');
+            $pagetext->SetText(tr('error404text') . ' ' .
+                sprintf(tr('errorreturnhome'), mod_Options::instance()->GetOption('basepath')));
         }
         $outpage = new tpl_Sheet();
         $outpage->SetModelTree($page);

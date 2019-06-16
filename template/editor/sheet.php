@@ -63,11 +63,11 @@ class tpl_Sheet implements tpl_ElementInterface
             $i->SetLevel($headinglevel);
         }
         if ($i) {
-        $nieuweheadinglevel = $headinglevel;
+        $newheadinglevel = $headinglevel;
         if ($this->ContainerContainsHeading($mod_element))
-        $nieuweheadinglevel += 1;
+        $newheadinglevel += 1;
         foreach ($mod_element->GetChildren() as $mod_child) {
-        $tpl_child = $this->ConvertModelToTpl($mod_child, $nieuweheadinglevel);
+        $tpl_child = $this->ConvertModelToTpl($mod_child, $newheadinglevel);
         if ($tpl_child)
             $i->AddChild($tpl_child);
         }
