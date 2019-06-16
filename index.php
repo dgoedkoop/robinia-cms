@@ -6,6 +6,7 @@ require_once 'control/page.php';
 require_once 'control/edit.php';
 require_once 'control/login.php';
 require_once 'control/disable_quotes.php';
+require_once 'control/translations.php';
 
 class Main
 {

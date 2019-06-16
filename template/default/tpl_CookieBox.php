@@ -15,10 +15,10 @@ class tpl_CookieBox extends mod_Container
                     . '}'
                     . '</script>'
                     . '<p><span class="cookiebox"><span class="cookieboxtext">'
-                    . 'Deze site kan video\'s van externe websites tonen. Daarbij kunnen cookies op uw computer worden '
-                    . 'bewaard.</span>'
+                    . tr('cookiewarning')
+                    . '</span>'
                     . '<span class="cookieboxbuttonarea"><span class="cookieboxbutton"><span class="cookieboxbuttontext">'
-                    . '<a href="javascript:;" onclick="ajaxSetCookies()">Accepteren</a>'
+                    . '<a href="javascript:;" onclick="ajaxSetCookies()">'.tr('accept').'</a>'
                     . '</span></span></span></p>';
         }
         return $output;

@@ -141,7 +141,7 @@ class tpl_Sheet implements tpl_ElementInterface
                 if ($after_element) {
                     $pastelink->AddParameter('after_element', $after_element->GetID());
                 }
-                $pastelink->SetCaption('Plakken');
+                $pastelink->SetCaption(tr('paste'));
                 $output .= $pastelink->GetLink();
             }
         }
@@ -166,7 +166,7 @@ class tpl_Sheet implements tpl_ElementInterface
             $cbclink->AddParameter('a', 'clipboardCut');
             $cbclink->AddParameter('id', $element->GetID());
             $cbclink->AddParameter('root_id', $this->modeltree->GetID());
-            $cbclink->SetCaption('Knippen');
+            $cbclink->SetCaption(tr('cut'));
             return $cbclink->GetLink();
         } else {
             return '';
@@ -202,7 +202,7 @@ class tpl_Sheet implements tpl_ElementInterface
             $previewlink->AddParameter('a', 'page');
             $previewlink->AddParameter('mode', 'preview');
             $previewlink->AddParameter('id', $element->GetID());
-            $previewlink->SetCaption('Preview');
+            $previewlink->SetCaption(tr('preview'));
             $output .= $previewlink->GetLink();
         }
         if (($status == 'y') || ($status == 'p')) {
@@ -217,7 +217,7 @@ class tpl_Sheet implements tpl_ElementInterface
                     $editlink->AddParameter('a', 'edit');
                     $editlink->AddParameter('id', $element->GetID());
                     $editlink->AddParameter('root_id', $this->modeltree->GetID());
-                    $editlink->SetCaption('Bewerken');
+                    $editlink->SetCaption(tr('edit'));
                     $output .= $editlink->GetLink();
                 }
             } else {
@@ -227,7 +227,7 @@ class tpl_Sheet implements tpl_ElementInterface
                 $editlink->AddParameter('c', 'edit');
                 $editlink->AddParameter('a', 'page');
                 $editlink->AddParameter('id', $element->GetID());
-                $editlink->SetCaption('Openen');
+                $editlink->SetCaption(tr('open(action)'));
                 $output .= $editlink->GetLink();
             }
             if (($status == 'p') && !is_null($this->currentuser)
@@ -240,7 +240,7 @@ class tpl_Sheet implements tpl_ElementInterface
                 $deletelink->AddParameter('a', 'delete');
                 $deletelink->AddParameter('id', $element->GetID());
                 $deletelink->AddParameter('root_id', $this->modeltree->GetID());
-                $deletelink->SetCaption('Invoegen ongedaan maken');
+                $deletelink->SetCaption(tr('undoinsert'));
                 $output .= $this->ClipboardLink($element, $parenttree)
                          . $deletelink->GetLink();
             }
@@ -257,7 +257,7 @@ class tpl_Sheet implements tpl_ElementInterface
                 $deletelink->AddParameter('a', 'delete');
                 $deletelink->AddParameter('id', $element->GetID());
                 $deletelink->AddParameter('root_id', $this->modeltree->GetID());
-                $deletelink->SetCaption('Verwijderen');
+                $deletelink->SetCaption(tr('delete'));
                 $output .= $this->ClipboardLink($element, $parenttree)
                          . $deletelink->GetLink();
             }
@@ -271,7 +271,7 @@ class tpl_Sheet implements tpl_ElementInterface
                 $permlink->AddParameter('a', 'permissions');
                 $permlink->AddParameter('id', $element->GetID());
                 $permlink->AddParameter('root_id', $this->modeltree->GetID());
-                $permlink->SetCaption('Rechten bewerken');
+                $permlink->SetCaption(tr('rights(action)'));
                 $output .= $permlink->GetLink();
             }
         } elseif ($status == 'd') {
@@ -282,7 +282,7 @@ class tpl_Sheet implements tpl_ElementInterface
             $undellink->AddParameter('a', 'reactivate');
             $undellink->AddParameter('id', $element->GetID());
             $undellink->AddParameter('root_id', $this->modeltree->GetID());
-            $undellink->SetCaption('Verwijderen ongedaan maken');
+            $undellink->SetCaption(tr('undodelete'));
             $output .= $undellink->GetLink();
         }
         $newparents = array_merge(array($element), $parenttree);
@@ -301,14 +301,14 @@ class tpl_Sheet implements tpl_ElementInterface
         $output = '<p class="editorframeheading">' . $element::TypeName() . "\n"
                 . "<form>\n"
                 . $element->GetForm()
-                . '<input type=submit value="Opslaan">';
+                . '<input type=submit value="'.tr('Save').'">';
         $element_id = $element->GetID();
         if ($element_id) {
             $output .= '<input type=reset class=editcancel id="' . $element_id
-                     . '" value="Annuleren">';
+                     . '" value="'.tr('cancel').'">';
         } else {
             $output .= '<input type=reset class=editnewcancel '
-                     . 'value="Annuleren">';
+                     . 'value="'.tr('cancel').'">';
         }
         $output .= "</form>\n";
         return $output;
@@ -366,23 +366,23 @@ class tpl_Sheet implements tpl_ElementInterface
             $root_id = 1;
         }
         $output = '<div class=menutitle>'
-                . 'TOOLS'
+                . tr('tools')
                 . '</div><div class=menubox>'
                 . '<a href="index.php?c=edit&amp;a=page&amp;id='
                 . urlencode($root_id) . '">'
-                . 'Terug naar index</a><br>'
+                . tr('toindex').'</a><br>'
                 . '<a href="index.php?c=edit&amp;a=commit&amp;id='
                 . urlencode($element_id)
-                . '">Wijzigingen doorvoeren</a><br>'
+                . '">'.tr('commit').'</a><br>'
                 . '<a href="index.php?c=edit&amp;a=rollback&amp;id='
                 . urlencode($element_id)
-                . '">Wijzigingen ongedaan maken</a></div>';
+                . '">'.tr('rollback').'</a></div>';
         if (!is_null($this->currentuser)) {
-            $output .= '<div class=menutitle>GEBRUIKER</div>'
-                     . '<div class=menubox>Ingelogd als: ' 
+            $output .= '<div class=menutitle>'.tr('usermenu').'</div>'
+                     . '<div class=menubox>'.tr('loggedinas').': ' 
                      . htmlspecialchars($this->currentuser->GetUsername())
                      . "<br>\n"
-                     . '<a href="index.php?c=login&amp;a=logout">Uitloggen</a>'
+                     . '<a href="index.php?c=login&amp;a=logout">'.tr('logout').'</a>'
                      . '</div>';
         }
         return $output;

@@ -52,13 +52,13 @@ class tpl_PermissionsForm
     public function GetForm($permissions = null)
     {
         $output = '<table class=tablewithvertical>'
-                . '<tr><th></th><th class=vertical><div>Weergeven</div></th>'
-                . '<th class=vertical><div>Bewerken</div></th>'
-                . '<th class=vertical><div>Wijzingen doorvoeren</div></th>'
-                . '<th class=vertical><div>Sub-elementen toevoegen</div></th>'
-                . '<th class=vertical><div>Sub-elementen verwijderen</div></th>'
-                . '<th class=vertical><div>Rechten aanpassen</div></th>'
-                . '<th class=vertical><div>Dit recht verwijderen</div></th></tr>';
+                . '<tr><th></th><th class=vertical><div>'.tr('view(action)').'</div></th>'
+                . '<th class=vertical><div>'.tr('edit').'</div></th>'
+                . '<th class=vertical><div>'.tr('commit').'</div></th>'
+                . '<th class=vertical><div>'.tr('addsubelements').'</div></th>'
+                . '<th class=vertical><div>'.tr('deletesubelements').'</div></th>'
+                . '<th class=vertical><div>'.tr('rights(action)').'</div></th>'
+                . '<th class=vertical><div>'.tr('removeright').'</div></th></tr>';
         $users = array();
         $groups = array();
         if (is_null($permissions)) {
@@ -72,7 +72,7 @@ class tpl_PermissionsForm
             if ($what == mod_Permissions::perm_user) {
                 $users[] = $subject_id;
                 $prefix = 'u';
-                $output .= 'Gebruiker: ';
+                $output .= tr('user').': ';
                 $found = false;
                 foreach ($this->userlist as $user) {
                     if ($user->GetUID() == $subject_id) {
@@ -86,7 +86,7 @@ class tpl_PermissionsForm
             } elseif ($what == mod_Permissions::perm_group) {
                 $groups[] = $subject_id;
                 $prefix = 'g';
-                $output .= 'Groep: ';
+                $output .= tr('group').': ';
                 $found = false;
                 foreach ($this->grouplist as $group) {
                     if ($group->GetGID() == $subject_id) {
@@ -112,11 +112,11 @@ class tpl_PermissionsForm
                  . htmlspecialchars($userstr) . '">'
                  . '<input type=hidden name=groups value="'
                  . htmlspecialchars($groupstr) . '">';
-        $output .= '</fieldset><fieldset><legend>Nieuw recht aanmaken</legend>'
+        $output .= '</fieldset><fieldset><legend>'.tr('addright').'</legend>'
                  . '<div class=checkboxline><input type="radio" '
                  . 'name="createwhat" value="user" CHECKED>'
-                 . '<label>Nieuw recht voor gebruiker</label></div>'
-                 . '<label for="user">Gebruiker:</label><select name="user">'
+                 . '<label>'.tr('addrightforuser').'</label></div>'
+                 . '<label for="user">'.tr('user').':</label><select name="user">'
                  . '<option value="">-</option>';
         foreach($this->userlist as $user) {
             $found = false;
@@ -138,8 +138,8 @@ class tpl_PermissionsForm
         $output .= '</select>'
                  . '<div class=checkboxline><input type="radio" '
                  . 'name="createwhat" value="group">'
-                 . '<label>Nieuw recht voor groep</label></div>'
-                 . '<label for="group">Groep:</label><select name="group">'
+                 . '<label>'.tr('addrightforgroup').'</label></div>'
+                 . '<label for="group">'.tr('group').':</label><select name="group">'
                  . '<option value="">-</option>';
         foreach($this->grouplist as $group) {
             $found = false;
@@ -160,7 +160,7 @@ class tpl_PermissionsForm
         }
         $output .= '</select>'
                  . '<input type="submit" name="addpermission" '
-                 . 'value="Toevoegen">';
+                 . 'value="'.tr('add').'">';
         return $output;
     }
     

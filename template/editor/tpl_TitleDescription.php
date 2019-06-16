@@ -4,25 +4,25 @@ class tpl_TitleDescription extends mod_TitleDescription implements tpl_ElementIn
 {
     public function GetContents()
     {
-        return '<p>Titel: ' . $this->title . '</p>'
-             . '<p>Beschrijving: ' . $this->description . '</p>'
-             . '<p>Naam voor link: ' . $this->linkname . '</p>';
+        return '<p>'.tr('title').': ' . $this->title . '</p>'
+             . '<p>'.tr('description').': ' . $this->description . '</p>'
+             . '<p>'.tr('linkname').': ' . $this->linkname . '</p>';
     }
     public function GetForm()
     {
-        return '<label for="title">Titel:</label>'
+        return '<label for="title">'.tr('title').':</label>'
              . '<input type="text" name="title" size="70" value="' 
              . htmlspecialchars($this->title) . "\">\n"
-             . '<label for="description">Beschrijving:</label>'
+             . '<label for="description">'.tr('description').':</label>'
              . '<textarea name="description" rows="10" cols="70">'
              . htmlspecialchars($this->description) . "</textarea>\n"
-             . '<label for="linkname">Naam voor link:</label>'
+             . '<label for="linkname">'.tr('linkname').':</label>'
              . '<input type="text" name="linkname" size="70" value="' 
              . htmlspecialchars($this->linkname) . "\">\n";
     }
     public static function TypeName()
     {
-        return 'Titel en beschrijving';
+        return tr('typetitledescription');
     }
     public function SetFromModel(mod_Element $mod_element)
     {

@@ -17,7 +17,7 @@ class tpl_ImageGallery extends mod_ImageGallery implements tpl_ElementInterface
     }
     public static function TypeName()
     {
-        return 'Galerij';
+        return tr('typegallery');
     }
     public function SetFromModel(mod_Element $mod_element)
     {

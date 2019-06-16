@@ -16,6 +16,7 @@ mod_Options::instance()->SetOptions(array(
     'img_upload_webpath' => 'uploads/images/',
     'img_check_rights'=> false,
     'img_lightbox'    => true,
+    'language'        => 'en',
     'classlist' => array('Paragraph', 'Heading',
         'Listing', 'ImageGallery', 'Image', 'Video',
         'Container', 'TitleDescription', 'Folder',

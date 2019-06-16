@@ -168,7 +168,7 @@ class ctrl_Edit
             $after_element = $parameters['after_element'];
         }
         
-        $output = '<div class=inputarea><fieldset><legend>Nieuw element</legend>'
+        $output = '<div class=inputarea><fieldset><legend>'.tr('newelement').'</legend>'
                 . '<form action="index.php" method="get">'
                 . '<input type=hidden name="c" value="edit">'
                 . '<input type=hidden name="a" value="addForm">'
@@ -180,7 +180,7 @@ class ctrl_Edit
             $output .= '<input type=hidden name="after_element" value="'
                      . htmlspecialchars($after_element) . '">';
         }
-        $output .= '<label for="type">Type voor nieuw element:</label>'
+        $output .= '<label for="type">'.tr('newelementtype').':</label>'
                  . '<select name="type">';
         
         $this->SetupDB();
@@ -196,9 +196,9 @@ class ctrl_Edit
                      . '</option>';
         }
         $output .= '</select></fieldset>'
-                 . '<fieldset><legend>Bevestigen</legend>'
-                 . '<input type=submit value="Verder"></form></div>';
-        $this->PgStart('Nieuw element');
+                 . '<fieldset><legend>'.tr('confirm').'</legend>'
+                 . '<input type=submit value="'.tr('continue').'"></form></div>';
+        $this->PgStart(tr('newelement'));
         echo $output;
         $this->PgEnd();
     }
@@ -267,12 +267,12 @@ class ctrl_Edit
         }
         $output .= $tpl_element->GetForm()
                  . '</fieldset>'
-                 . '<fieldset><legend>Bevestigen</legend>'
-                 . '<input type=submit value="Opslaan">'                 
+                 . '<fieldset><legend>'.tr('confirm').'</legend>'
+                 . '<input type=submit value="'.tr('save').'">'
                  . '<input type=submit name="addanother" '
-                 . 'value="Opslaan en nog eenzelfde element toevoegen">';
+                 . 'value="'.tr('saveadd').'">';
 
-        $this->PgStart('Nieuw element');
+        $this->PgStart(tr('newelement'));
         echo $output;
         $this->PgEnd();
     }
@@ -378,7 +378,7 @@ class ctrl_Edit
         }
         
         $output = '<div class=inputarea>'
-                . '<fieldset><legend>Eigenschappen van element</legend>'
+                . '<fieldset><legend>'.tr('elementproperties').'</legend>'
                 . '<form action="index.php?c=edit&a=editSave" method="post" '
                 . 'enctype="' . $enctype . '">';
         if ($has_upload) {
@@ -390,11 +390,11 @@ class ctrl_Edit
                  . '<input type=hidden name="root_id" value="'
                  . htmlspecialchars($root_id) . '">'
                  . $tpl_element->GetForm()
-                 . '</fieldset><fieldset><legend>Bevestigen</legend>'
-                 . '<input type=submit value="Opslaan"></fieldset></form>'
+                 . '</fieldset><fieldset><legend>'.tr('confirm').'</legend>'
+                 . '<input type=submit value="'.tr('save').'"></fieldset></form>'
                  . '</div>';
 
-        $this->PgStart('Element bewerken');
+        $this->PgStart(tr('editelement'));
         echo $output;
         $this->PgEnd();
     }
@@ -436,17 +436,17 @@ class ctrl_Edit
         $sheet->SetUserlist($this->db->LoadTypeAll('User'));
         $sheet->SetGrouplist($this->GetGrouplist());
 
-        $output = '<div class=inputarea><fieldset><legend>Elementrechten</legend>'
+        $output = '<div class=inputarea><fieldset><legend>'.tr('elementrights').'</legend>'
                 . '<form action="index.php?c=edit&a=permissionssave" method="post">'
                 . '<input type=hidden name="id" value="'
                 . htmlspecialchars($mod_element->GetID()) . '">'
                 . '<input type=hidden name="root_id" value="'
                 . htmlspecialchars($root_id) . '">'
                 . $sheet->GetForm($newpermissions)
-                . '</fieldset><fieldset><legend>Bevestigen</legend>'
-                . '<input type=submit value="Opslaan"></fieldset></form></div>';
+                . '</fieldset><fieldset><legend>'.tr('confirm').'</legend>'
+                . '<input type=submit value="'.tr('save').'"></fieldset></form></div>';
 
-        $this->PgStart('Rechten voor element aanpassen');
+        $this->PgStart(tr('editelementrights'));
         echo $output;
         $this->PgEnd();
     }

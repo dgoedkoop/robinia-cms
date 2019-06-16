@@ -21,7 +21,7 @@ class tpl_Container extends mod_Container implements tpl_ElementInterface
     }
     public static function TypeName()
     {
-        return 'Container';
+        return tr('typecontainer');
     }
     public function SetFromModel(mod_Element $mod_element)
     {

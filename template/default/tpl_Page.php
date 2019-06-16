@@ -19,7 +19,7 @@ class tpl_Page extends mod_Page implements tpl_ElementInterface
                 $description = $child->GetDescription();
                 $linkname = $child->GetLinkname();
             } else {
-                $title = 'Untitled';
+                $title = tr('untitled');
                 $description = '';
                 $linkname = '';
             }

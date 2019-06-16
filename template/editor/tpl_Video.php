@@ -11,7 +11,7 @@ class tpl_Video extends mod_Video implements tpl_ElementInterface
             $video_id = '';
         }
 
-        $output = '<p>URL: ' . $this->GetURL() . '</p>';
+        $output = '<p>'.tr('url').': ' . $this->GetURL() . '</p>';
         if ($video_id != '') {
             $output .= '<p><img src="http://img.youtube.com/vi/'
                      . $video_id . '/0.jpg" alttext="Video"></p>';
@@ -23,10 +23,10 @@ class tpl_Video extends mod_Video implements tpl_ElementInterface
     }
     public function GetForm()
     {
-        $output = '<label for="url">URL:</label>'
+        $output = '<label for="url">'.tr('url').':</label>'
                  . '<input type="text" name="url" size="70" value="'
                  . htmlspecialchars($this->url) . "\">\n"
-                 . '<label for="caption">Onderschrift:</label>'
+                 . '<label for="caption">'.tr('imgcaption').':</label>'
                  . '<input type="text" name="caption" size="70" value="'
                  . htmlspecialchars($this->caption) . "\">\n";
         return $output;
@@ -42,7 +42,7 @@ class tpl_Video extends mod_Video implements tpl_ElementInterface
     }
     public static function TypeName()
     {
-        return 'Video';
+        return tr('typevideo');
     }
     public function SetFromModel(mod_Element $mod_element)
     {

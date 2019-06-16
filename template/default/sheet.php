@@ -149,10 +149,11 @@ EOT;
     private function SwitchToMenu()
     {
         if (!is_null($this->modeltree)) {
-            return '<p class=copyright>Laatst bijgewerkt op '
-                 . date('d-m-Y', $this->modeltree->GetTimeModified())
-                 . '</p>'.'</div></div>'
-                 . '<div class=menu>';
+            return '<p class=copyright>'
+                . sprintf(tr('lastmodified'), 
+                    date('d-m-Y', $this->modeltree->GetTimeModified()))
+                . '</p>'.'</div></div>'
+                . '<div class=menu>';
         } else {
             return '';
         }

@@ -8,7 +8,7 @@ class tpl_Paragraph extends mod_Paragraph implements tpl_ElementInterface
     }
     public function GetForm() 
     {
-        return '<label for="text">Tekst:</label>'
+        return '<label for="text">'.tr('text').':</label>'
              . '<textarea name="text" rows="10" cols="70">'
              . htmlspecialchars($this->text) . "</textarea>\n";
     }
@@ -20,7 +20,7 @@ class tpl_Paragraph extends mod_Paragraph implements tpl_ElementInterface
     }
     public static function TypeName()
     {
-        return 'Alinea';
+        return tr('typeparagraph');
     }
     public function SetFromModel(mod_Element $mod_element)
     {

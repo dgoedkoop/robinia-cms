@@ -4,17 +4,17 @@ class tpl_Usergroup extends mod_Usergroup implements tpl_ElementInterface
 {
     public function GetContents()
     {
-        return '<p>Naam: ' . $this->GetGroupname() . '</p>';
+        return '<p>'.tr('groupname').': ' . $this->GetGroupname() . '</p>';
     }
     public function GetForm()
     {
-        return '<label for="groupname">Naam:</label>'
+        return '<label for="groupname">'.tr('groupname').':</label>'
              . '<input type="text" name="groupname" size="70" value="' 
              . htmlspecialchars($this->GetGroupname()) . "\">\n";
     }
     public static function TypeName()
     {
-        return 'Gebruikersgroep';
+        return tr('typeusergroup');
     }
     public function SetFromModel(mod_Element $mod_element)
     {

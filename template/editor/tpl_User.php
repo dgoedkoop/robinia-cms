@@ -8,8 +8,8 @@ class tpl_User extends mod_User implements tpl_ElementInterface
     
     public function GetContents()
     {
-        $output = '<p>Naam: ' . $this->GetUsername() . '</p>'
-                . '<p>Lid van groepen: ';
+        $output = '<p>'.tr('username').': ' . $this->GetUsername() . '</p>'
+                . '<p>'.tr('thisusergroupmembership').': ';
         $groupnames = array();
         foreach($this->GetGroups() as $gid) {
             $groupname = false;
@@ -26,23 +26,21 @@ class tpl_User extends mod_User implements tpl_ElementInterface
         $output .= implode(', ', $groupnames)
                  . '</p>';
         if ($this->GetAdmin()) {
-            $output .= '<p>Deze gebruiker is een beheerder.</p>';
+            $output .= '<p>'.tr('thisuserisadmin').'</p>';
         }
         if ($this->GetRootID() > 1) {
-            $output .= '<p>Startpunt voor deze gebruiker is element: '
-                     . $this->GetRootID() . '</p>';
+            $output .= '<p>'.sprintf(tr('thisuserstartelement'), $this->GetRootID()).'</p>';
         }
         return $output;
     }
     public function GetForm()
     {
-        $output = '<label for="name">Naam:</label>'
+        $output = '<label for="name">'.tr('username').':</label>'
                 . '<input type="text" name="name" size="70" value="' 
                 . htmlspecialchars($this->GetUsername()) . "\">\n"
-                . '<label for="password">Wachtwoord (laat leeg om niet te '
-                . 'wijzigen):</label>'
+                . '<label for="password">'.tr('passwordchangeemptyunchanged').':</label>'
                 . '<input type="password" name="password" size="70">' . "\n"
-                . '</fieldset><fieldset><legend>Groepslidmaatschappen</legend>'
+                . '</fieldset><fieldset><legend>'.tr('groupmembership').'</legend>'
                 . '<div class=checkboxlist>';
         foreach($this->allgroups as $group) {
             if ($group->GetGID() > 2) {
@@ -74,10 +72,10 @@ class tpl_User extends mod_User implements tpl_ElementInterface
             if ($this->GetAdmin()) {
                 $output .= ' CHECKED';
             }
-            $output .= '><label for="admin">Gebruiker is beheerder</label>'
+            $output .= '><label for="admin">'.tr('userisadmin').'</label>'
                      . "</div>\n";
         }
-        $output .= '<label for="rootid">Startpunt in backend is element:'
+        $output .= '<label for="rootid">'.tr('userstartelement').':'
                  . '</label><input type="text" name="rootid" size="70" value="' 
                 . htmlspecialchars($this->GetRootID()) . "\">\n";
 
@@ -85,7 +83,7 @@ class tpl_User extends mod_User implements tpl_ElementInterface
     }
     public static function TypeName()
     {
-        return 'Gebruiker';
+        return tr('typeuser');
     }
     public function SetFromModel(mod_Element $mod_element)
     {

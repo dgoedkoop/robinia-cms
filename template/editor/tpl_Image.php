@@ -91,19 +91,20 @@ class tpl_Image extends mod_Image implements tpl_ElementInterface
     public function GetForm()
     {
         if ($this->filename != '') {
-            $output = '<p>Bestandsnaam: '
+            $output = '<p>'.tr('filename').': '
                     . htmlspecialchars($this->filename) . '</p>'
-                    . '<p>Formaat: ' . $this->width . ' x ' . $this->height
-                    . ' pixels</p>'
-                    . '<label for="imgupload">Afbeelding wijzigen:</label>';
+                    . '<p>'.tr('imgdimensions').': '
+                    . sprintf(tr('xpixels', $this->height), $this->width, $this->height)
+                    . '</p>'
+                    . '<label for="imgupload">'.tr('imgchange').':</label>';
         } else{
-            $output = '<label for="imgupload">Afbeelding uploaden:</label>';
+            $output = '<label for="imgupload">'.tr('imgupload').':</label>';
         }
         $output .= '<input type="file" name="imgupload">' . "\n"
-                 . '<label for="alttext">Alt-text:</label>'
+                 . '<label for="alttext">'.tr('imgalttext').':</label>'
                  . '<input type="text" name="alttext" value="'
                  . htmlspecialchars($this->alttext) . "\">\n"
-                 . '<label for="caption">Onderschrift:</label>'
+                 . '<label for="caption">'.tr('imgcaption').':</label>'
                  . '<input type="text" name="caption" size="70" value="'
                  . htmlspecialchars($this->caption) . "\">\n";
         return $output;
@@ -134,7 +135,7 @@ class tpl_Image extends mod_Image implements tpl_ElementInterface
     }
     public static function TypeName()
     {
-        return 'Afbeelding';
+        return tr('typeimage');
     }
     public function SetFromModel(mod_Element $mod_element)
     {

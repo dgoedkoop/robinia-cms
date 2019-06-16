@@ -17,7 +17,7 @@ class tpl_ElementPermissionDenied extends mod_Container
     }
     public static function TypeName()
     {
-        return 'Onbekend element (toegang geweigerd)';
+        return tr('typepermissiondenied');
     }
     public function SetFromModel(mod_Element $mod_element)
     {

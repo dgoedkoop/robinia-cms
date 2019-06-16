@@ -19,7 +19,7 @@ class tpl_Heading extends mod_Heading implements tpl_ElementInterface
     }
     public function GetForm()
     {
-        return '<label for="text">Koptekst:</label>'
+        return '<label for="text">'.tr('headingtext').':</label>'
              . '<input type="text" name="text" size="70" value="' 
              . htmlspecialchars($this->text) . "\">\n";
     }
@@ -31,7 +31,7 @@ class tpl_Heading extends mod_Heading implements tpl_ElementInterface
     }
     public static function TypeName()
     {
-        return 'Kop';
+        return tr('typeheading');
     }
     public function SetFromModel(mod_Element $mod_element)
     {

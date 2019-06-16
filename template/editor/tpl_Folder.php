@@ -16,7 +16,7 @@ class tpl_Folder extends mod_Folder implements tpl_ElementInterface
     }
     public static function TypeName()
     {
-        return 'Map';
+        return tr('typefolder');
     }
     public function SetFromModel(mod_Element $mod_element)
     {

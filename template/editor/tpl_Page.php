@@ -16,7 +16,7 @@ class tpl_Page extends mod_Page implements tpl_ElementInterface
     }
     public static function TypeName()
     {
-        return 'Pagina';
+        return tr('typepage');
     }
     public function SetFromModel(mod_Element $mod_element)
     {

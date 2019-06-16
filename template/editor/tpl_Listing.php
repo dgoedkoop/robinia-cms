@@ -12,7 +12,7 @@ class tpl_Listing extends mod_Listing implements tpl_ElementInterface
     }
     public function GetForm()
     {
-        $output = '<label for="text">Lijstitems:</label>'
+        $output = '<label for="text">'.tr('listitems').':</label>'
                 . '<textarea name="text" rows="10" cols="70">';
         foreach ($this->items as $item) {
             $output .= htmlspecialchars($item)."\n";
@@ -30,7 +30,7 @@ class tpl_Listing extends mod_Listing implements tpl_ElementInterface
     }
     public static function TypeName()
     {
-        return 'Lijst';
+        return tr('typelist');
     }
     public function SetFromModel(mod_Element $mod_element)
     {
