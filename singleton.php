@@ -4,12 +4,12 @@ class Singleton
 {
     public static function instance()
     {
-        static $instance = false;
-        if ($instance === false)
+        static $instance=[];
+        if (!isset($instance[static::class]))
         {
-            $instance = new static();
+            $instance[static::class] = new static();
         }
-        return $instance;
+        return $instance[static::class];
     }
     private function __construct() {}
     private function __clone() {}

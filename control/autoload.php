@@ -4,7 +4,7 @@ class MissingException extends Exception
 {
 }
 
-function __autoload($classname) {
+spl_autoload_register(function ($classname) {
     if (substr($classname, 0, 4) == 'mod_') {
         require_once('model/' . $classname . '.php');
     } elseif (substr($classname, 0, 4) == 'tpl_') {
@@ -13,6 +13,6 @@ function __autoload($classname) {
     } else {
         throw new MissingException("Unable to load $classname.");
     }
-}
+});
 
 ?>
