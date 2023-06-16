@@ -1,0 +1,7 @@
+# Copy this file to .htaccess and fill in the correct RewriteBase.
+
+RewriteEngine On
+RewriteRule ^$ index.html
+RewriteRule ^([a-z0-9_\-]+).html$ index.php?c=page&a=pagelink&link=$1
+RewriteRule ^uploads/images/([a-z0-9_\.]+)$ image.php?id=uploads/images/$1
+RewriteBase /<enter directory here>/
