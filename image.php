@@ -5,7 +5,7 @@
  */
 $thumb_dir = 'thumbnails';
 
-require_once 'imgop.inc';
+require_once 'imgop.php';
 /*
  * For rights check
  */
